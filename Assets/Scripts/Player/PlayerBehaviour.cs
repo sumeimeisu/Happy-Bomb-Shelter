@@ -192,6 +192,12 @@ public class PlayerBehaviour : MonoBehaviour
 		anim.SetBool("FacingLeft", facingLeft); // rb.velocity.x < 0);
 		anim.SetBool("Diving", state == playerState.Diving);
 		anim.SetBool("Walking", state == playerState.Grounded);
-		anim.SetBool("Dashing", state == playerState.Dashing);	
+		anim.SetBool("Dashing", state == playerState.Dashing);
+
+		if (Input.GetKeyDown(KeyCode.H))
+		{
+			if (anim.GetLayerWeight(1) == 0) anim.SetLayerWeight(1, 1);
+			else anim.SetLayerWeight(1, 0);
+		}
 	}
 }
