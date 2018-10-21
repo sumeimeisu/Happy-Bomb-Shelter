@@ -129,7 +129,7 @@ public class PlayerBehaviour : MonoBehaviour
 												velocityIncrement.y);
 				}
                 if (Mathf.Abs(Input.GetAxis(inputHorizontal)) > 0.1f)
-                    facingLeft = Input.GetAxis(inputHorizontal) < 0;
+					facingLeft = Input.GetAxis(inputHorizontal) > 0;
 				break;
 			case playerState.Diving:
 			case playerState.Dashing:
@@ -160,7 +160,7 @@ public class PlayerBehaviour : MonoBehaviour
         var currentState = anim.GetCurrentAnimatorStateInfo(0);
         if (currentState.IsName("Flying"))
         {
-            if (Time.time - last_flap > 0.2 && rb.velocity.y > 0)
+            if (Time.time - lastFlap > 0.2 && rb.velocity.y > 0)
                 return 0;
             return 1;
         }
@@ -185,11 +185,11 @@ public class PlayerBehaviour : MonoBehaviour
 		anim.speed = GetAnimationSpeed();
 
 		//TODO figure mirror animation
-		sprite.flipX = (state != playerState.Dashing && facingLeft) || rb.velocity.x < 0;
+		sprite.flipX = facingLeft; // (state != playerState.Dashing && facingLeft) || rb.velocity.x < 0;
 
 		anim.SetFloat("velocity_y", rb.velocity.y);
 		anim.SetFloat("velocity_x_abs", Mathf.Abs(rb.velocity.x));
-		anim.SetBool("GoingLeft", rb.velocity.x < 0);
+		anim.SetBool("FacingLeft", facingLeft); // rb.velocity.x < 0);
 		anim.SetBool("Diving", state == playerState.Diving);
 		anim.SetBool("Walking", state == playerState.Grounded);
 		anim.SetBool("Dashing", state == playerState.Dashing);	
