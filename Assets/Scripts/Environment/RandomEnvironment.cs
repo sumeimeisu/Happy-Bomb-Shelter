@@ -48,6 +48,8 @@ public class RandomEnvironment : MonoBehaviour
 
 		if (camTransform.position.x > screens[index].transform.position.x + 3 * width / 2f)
 		{
+			Destroy(screens[index]);
+			screens[index] = SpawnRandomInRect(width, height, density);
 			screens[index].transform.position = Vector3.right * (screens[index - 1 < 0 ? screens.Length - 1 : index - 1].transform.position.x + width);
 			index++;
 			if (index > screens.Length - 1) index = 0;
@@ -64,7 +66,7 @@ public class RandomEnvironment : MonoBehaviour
 			int x = (int) Random.Range(-w / 2f, w / 2f);
 			int y = (int) Random.Range(-h / 2f, h / 2f);
 
-			GameObject spawned = Instantiate(objects[Random.Range(0, objects.Length - 1)], spawnedParent.transform) as GameObject;
+			GameObject spawned = Instantiate(objects[Random.Range(0, objects.Length)], spawnedParent.transform) as GameObject;
 			spawned.transform.localPosition = new Vector3(x, y + yoffset, 0);
 		}
 
