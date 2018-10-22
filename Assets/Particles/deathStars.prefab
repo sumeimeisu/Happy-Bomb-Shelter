@@ -173,8 +173,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 5.4
-      minScalar: 4.8
+      scalar: 6
+      minScalar: 3.8
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1316,7 +1316,7 @@ ParticleSystem:
         key4: {r: 0, g: 0, b: 0, a: 1}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 1}
-        key7: {r: 0, g: 0, b: 0, a: 0}
+        key7: {r: 0, g: 0, b: 0, a: 1}
         ctime0: 0
         ctime1: 65535
         ctime2: 0
@@ -1325,14 +1325,14 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 42119
-        atime1: 48049
-        atime2: 53219
-        atime3: 56564
-        atime4: 59909
-        atime5: 62798
+        atime0: 32235
+        atime1: 38165
+        atime2: 44704
+        atime3: 50178
+        atime4: 56412
+        atime5: 61125
         atime6: 65535
-        atime7: 0
+        atime7: 65535
         m_Mode: 1
         m_NumColorKeys: 2
         m_NumAlphaKeys: 7
