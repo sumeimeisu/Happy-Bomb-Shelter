@@ -224,4 +224,5 @@ public class PlayerBehaviour : MonoBehaviour
 			else anim.SetLayerWeight(1, 0);
 		}
 	}
+
 }
