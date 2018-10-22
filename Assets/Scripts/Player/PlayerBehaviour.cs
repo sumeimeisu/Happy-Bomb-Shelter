@@ -16,7 +16,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 	#region properties
 
-	[Header("Movement")] [SerializeField] private Vector2 velocityMax;
+	[Header("Movement")] [SerializeField] public Vector2 velocityMax;
 
 	[SerializeField] private Vector2 velocityIncrement;
 
@@ -48,14 +48,17 @@ public class PlayerBehaviour : MonoBehaviour
 
 	private float dyingTime;
 
+	[SerializeField]
+	DashAbility dash;
+
 	[NonSerialized] public bool dying;
 	[NonSerialized] public bool diving;
 
-	[SerializeField] private string inputHorizontal = "Horizontal";
-	[SerializeField] private string inputVertical = "Vertical";
+	[SerializeField] public string inputHorizontal = "Horizontal";
+	[SerializeField] public string inputVertical = "Vertical";
 	[SerializeField] private string inputFlap = "Flap";
-	[SerializeField] private string inputDive = "Dive";
-	[SerializeField] private string inputDash = "Dash";
+	[SerializeField] public string inputDive = "Dive";
+	[SerializeField] public string inputDash = "Dash";
 
 	public playerState state;
 
@@ -69,6 +72,8 @@ public class PlayerBehaviour : MonoBehaviour
 		defaultGravity = rb.gravityScale;
 		defaultLDrag = rb.drag;
 		sprite = GetComponent<SpriteRenderer>();
+
+		dash.Initialize(this);
 	}
 
 	bool IsGrounded()
@@ -86,6 +91,8 @@ public class PlayerBehaviour : MonoBehaviour
 			case playerState.Flying:
 				if (Input.GetButtonDown(inputDive))
 					state = playerState.Diving;
+				else if (Input.GetButtonDown(inputDash))
+					dash.tryDash();
 				else if (IsGrounded())
 					state = playerState.Grounded;
 				break;
@@ -99,10 +106,24 @@ public class PlayerBehaviour : MonoBehaviour
 				}	
 				break;
 			case playerState.Grounded:
-				if (!IsGrounded())
+				if (Input.GetButtonDown(inputDash))
+					dash.tryDash();
+				else if (!IsGrounded())
 					state = playerState.Flying;
 				break;
 			case playerState.Dashing:
+				if (dash.timeLeft == 0)
+				{
+					dash.stop();
+					if (IsGrounded())
+					{
+						state = playerState.Grounded;
+					}
+					else
+					{
+						state = playerState.Flying;
+					}
+				}
 				break;
 			case playerState.Dying:
 				break;
@@ -132,7 +153,10 @@ public class PlayerBehaviour : MonoBehaviour
 					facingLeft = Input.GetAxis(inputHorizontal) > 0;
 				break;
 			case playerState.Diving:
+				break;	
 			case playerState.Dashing:
+				rb.velocity = dash.direction * dash.velocity;
+				break;
 			case playerState.Dying:
 				break;
 			default:

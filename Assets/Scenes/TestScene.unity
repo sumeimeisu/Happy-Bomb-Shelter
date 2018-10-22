@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 7205547}
   - component: {fileID: 7205546}
   - component: {fileID: 7205545}
+  - component: {fileID: 7205551}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -150,6 +151,7 @@ MonoBehaviour:
   walkingLDrag: 10
   diveGravity: 30
   bulletCollider: {fileID: 7205547}
+  dash: {fileID: 7205551}
   inputHorizontal: Horizontal
   inputVertical: Vertical
   inputFlap: Flap
@@ -278,6 +280,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7205551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 7205544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7422e7f3878228b49825e0772c1abe94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.1
+  velocity: 150
+  basePoints: 3
+  baseCooldown: 4
+  momentumConservation: 0.2
+  momentumConservationDiving: 0.4
+  currentPoints: 0
+  currentCooldown: 0
+  timeLeft: 0
+  direction: {x: 0, y: 0}
 --- !u!1 &281824771
 GameObject:
   m_ObjectHideFlags: 0
