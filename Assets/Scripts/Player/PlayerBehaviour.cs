@@ -245,6 +245,7 @@ public class PlayerBehaviour : MonoBehaviour
 		anim.SetBool("Diving", state == playerState.Diving);
 		anim.SetBool("Walking", state == playerState.Grounded);
 		anim.SetBool("Dashing", state == playerState.Dashing);
+		anim.SetBool("Floating", state == playerState.Floating);
 
 		if (Input.GetKeyDown(KeyCode.H))
 		{
