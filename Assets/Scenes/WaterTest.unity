@@ -1426,16 +1426,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 198837473319499494, guid: 68ad5caf323e76e489f7211549b44877,
-        type: 2}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198837473319499494, guid: 68ad5caf323e76e489f7211549b44877,
-        type: 2}
-      propertyPath: moveWithTransform
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68ad5caf323e76e489f7211549b44877, type: 2}
   m_IsPrefabAsset: 0
@@ -1477,11 +1467,6 @@ Prefab:
     - target: {fileID: 4160174266556080, guid: 7c51810e75cd87e488c3fe489498e86f, type: 2}
       propertyPath: m_RootOrder
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 198921030776606890, guid: 7c51810e75cd87e488c3fe489498e86f,
-        type: 2}
-      propertyPath: prewarm
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c51810e75cd87e488c3fe489498e86f, type: 2}
@@ -1704,6 +1689,21 @@ Prefab:
       propertyPath: waterEffect
       value: 
       objectReference: {fileID: 1419368138}
+    - target: {fileID: 114686485714423418, guid: e78e5088ab21900489dc2668436b1624,
+        type: 2}
+      propertyPath: diveUnderwaterGravity
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114686485714423418, guid: e78e5088ab21900489dc2668436b1624,
+        type: 2}
+      propertyPath: diveUnderwaterMaxSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114686485714423418, guid: e78e5088ab21900489dc2668436b1624,
+        type: 2}
+      propertyPath: floatingGravity
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e78e5088ab21900489dc2668436b1624, type: 2}
   m_IsPrefabAsset: 0

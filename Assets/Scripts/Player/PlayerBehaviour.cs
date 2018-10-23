@@ -12,6 +12,7 @@ public class PlayerBehaviour : MonoBehaviour
 		Diving,
 		Dashing,
 		Dying,
+		Floating,
 	}
 
 	#region properties
@@ -26,6 +27,9 @@ public class PlayerBehaviour : MonoBehaviour
 
 	[SerializeField] private float diveGravity;
 
+	[SerializeField] private float diveUnderwaterMaxSpeed;
+
+	[SerializeField] private float floatingGravity;
 
 	[Header("References")] [SerializeField]
 	private BoxCollider2D bulletCollider;
@@ -84,6 +88,12 @@ public class PlayerBehaviour : MonoBehaviour
 	        1 << LayerMask.NameToLayer("Ground")
 		);
 	}
+
+	bool CheckWater(bool functionReturn)
+	{
+		if (waterEffect) return functionReturn;
+		else return false;
+	}
 	
 	void HandleInput()
 	{
@@ -96,6 +106,8 @@ public class PlayerBehaviour : MonoBehaviour
 					dash.tryDash();
 				else if (IsGrounded())
 					state = playerState.Grounded;
+				else if (CheckWater(waterEffect.IsUnderWater()) && CheckWater(waterEffect.IsFloating()))
+					state = playerState.Floating;
 				break;
 			case playerState.Diving:
 				if (!Input.GetButton(inputDive))
@@ -128,6 +140,14 @@ public class PlayerBehaviour : MonoBehaviour
 				break;
 			case playerState.Dying:
 				break;
+			case playerState.Floating:
+				if (!CheckWater(waterEffect.IsFloating()))
+					state = playerState.Flying;
+				if (Input.GetButton(inputFlap))
+					state = playerState.Flying;
+				if (Input.GetButton(inputDive))
+					state = playerState.Diving;
+				break;
 			default:
 				throw new ArgumentOutOfRangeException();
 		}
@@ -148,7 +168,7 @@ public class PlayerBehaviour : MonoBehaviour
 				{
 					lastFlap = Time.time;
 					rb.velocity += new Vector2(velocityIncrement.x * Input.GetAxis(inputHorizontal),
-												(CheckWaterLevel())? -velocityIncrement.y : velocityIncrement.y);
+												(!CheckWater(waterEffect.IsFloating()) && CheckWater(waterEffect.IsUnderWater())) ? -velocityIncrement.y : velocityIncrement.y);
 				}
                 if (Mathf.Abs(Input.GetAxis(inputHorizontal)) > 0.1f)
 					facingLeft = Input.GetAxis(inputHorizontal) > 0;
@@ -159,6 +179,14 @@ public class PlayerBehaviour : MonoBehaviour
 				rb.velocity = dash.direction * dash.velocity;
 				break;
 			case playerState.Dying:
+				break;
+			case playerState.Floating:
+				if (Mathf.Abs(Input.GetAxisRaw(inputHorizontal)) > 0.2f)
+					rb.velocity = new Vector2(Input.GetAxisRaw(inputHorizontal) * walkingSpeed, rb.velocity.y);
+				else
+					rb.velocity = new Vector2(0, rb.velocity.y);
+				if (Mathf.Abs(Input.GetAxis(inputHorizontal)) > 0.1f)
+					facingLeft = Input.GetAxis(inputHorizontal) > 0;
 				break;
 			default:
 				throw new ArgumentOutOfRangeException();
@@ -172,7 +200,9 @@ public class PlayerBehaviour : MonoBehaviour
 
     float GetGravity()
     {
-	    return state == playerState.Diving ? diveGravity : defaultGravity;
+		if (state == playerState.Floating) return floatingGravity;
+		else if (state == playerState.Diving) return diveGravity;
+	    else return defaultGravity;
     }
 
     int GetHorizontalDirection()
@@ -196,16 +226,6 @@ public class PlayerBehaviour : MonoBehaviour
 		    return 0;
 	    return 1;
     }
-
-	bool CheckWaterLevel()
-	{
-		if (!waterEffect) return false;
-
-		if (waterEffect.underwater) anim.SetLayerWeight(2, 1);
-		else anim.SetLayerWeight(2, 0);
-
-		return waterEffect.underwater;
-	}
 
 // Update is called once per frame
 	void Update () {
@@ -235,7 +255,12 @@ public class PlayerBehaviour : MonoBehaviour
 			else anim.SetLayerWeight(1, 0);
 		}
 
-		if (CheckWaterLevel()) rb.gravityScale = -rb.gravityScale;
+		if (CheckWater(waterEffect.IsUnderWater()) && state != playerState.Diving) rb.gravityScale = -rb.gravityScale;
+		else if (CheckWater(waterEffect.IsUnderWater()) && state == playerState.Diving && rb.velocity.magnitude > diveUnderwaterMaxSpeed) rb.velocity = rb.velocity.normalized * diveUnderwaterMaxSpeed;
+
+		if (CheckWater(waterEffect.IsFloating())) anim.SetLayerWeight(2, 0);
+		else if (CheckWater(waterEffect.IsUnderWater())) anim.SetLayerWeight(2, 1);
+		else anim.SetLayerWeight(2, 0);
 	}
 
 }
