@@ -8,6 +8,9 @@ public class WaterEffect : MonoBehaviour
 	public float waterLine;
 	float floatingRange = 20;
 
+	public float diveUnderwaterMaxSpeed;
+	public float floatingGravity;
+
 	[NonSerialized] public bool underwater;
 
 	public ParticleSystem smallBubbles;

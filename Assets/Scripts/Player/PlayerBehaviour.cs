@@ -27,10 +27,6 @@ public class PlayerBehaviour : MonoBehaviour
 
 	[SerializeField] private float diveGravity;
 
-	[SerializeField] private float diveUnderwaterMaxSpeed;
-
-	[SerializeField] private float floatingGravity;
-
 	[Header("References")] [SerializeField]
 	private BoxCollider2D bulletCollider;
 
@@ -200,7 +196,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     float GetGravity()
     {
-		if (state == playerState.Floating) return floatingGravity;
+		if (state == playerState.Floating && CheckWater(true)) return waterEffect.floatingGravity;
 		else if (state == playerState.Diving) return diveGravity;
 	    else return defaultGravity;
     }
@@ -255,8 +251,11 @@ public class PlayerBehaviour : MonoBehaviour
 			else anim.SetLayerWeight(1, 0);
 		}
 
-		if (CheckWater(waterEffect.IsUnderWater()) && state != playerState.Diving) rb.gravityScale = -rb.gravityScale;
-		else if (CheckWater(waterEffect.IsUnderWater()) && state == playerState.Diving && rb.velocity.magnitude > diveUnderwaterMaxSpeed) rb.velocity = rb.velocity.normalized * diveUnderwaterMaxSpeed;
+		if (CheckWater(true))
+		{
+			if (waterEffect.IsUnderWater() && state != playerState.Diving) rb.gravityScale = -rb.gravityScale;
+			else if (waterEffect.IsUnderWater() && state == playerState.Diving && rb.velocity.magnitude > waterEffect.diveUnderwaterMaxSpeed) rb.velocity = rb.velocity.normalized * waterEffect.diveUnderwaterMaxSpeed;
+		}
 
 		if (CheckWater(waterEffect.IsFloating())) anim.SetLayerWeight(2, 0);
 		else if (CheckWater(waterEffect.IsUnderWater())) anim.SetLayerWeight(2, 1);
