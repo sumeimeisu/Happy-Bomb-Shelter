@@ -98,12 +98,16 @@ public class PlayerBehaviour : MonoBehaviour
 			case playerState.Flying:
 				if (Input.GetButtonDown(inputDive))
 					state = playerState.Diving;
+				/*
 				else if (Input.GetButtonDown(inputDash))
 					dash.tryDash();
+				*/
 				else if (IsGrounded())
 					state = playerState.Grounded;
-				else if (CheckWater(waterEffect.IsUnderWater()) && CheckWater(waterEffect.IsFloating()))
+				/*
+				else if (CheckWater(waterEffect.IsFloating()))
 					state = playerState.Floating;
+				*/
 				break;
 			case playerState.Diving:
 				if (!Input.GetButton(inputDive))
@@ -137,8 +141,6 @@ public class PlayerBehaviour : MonoBehaviour
 			case playerState.Dying:
 				break;
 			case playerState.Floating:
-				if (!CheckWater(waterEffect.IsFloating()))
-					state = playerState.Flying;
 				if (Input.GetButton(inputFlap))
 					state = playerState.Flying;
 				if (Input.GetButton(inputDive))
@@ -164,7 +166,7 @@ public class PlayerBehaviour : MonoBehaviour
 				{
 					lastFlap = Time.time;
 					rb.velocity += new Vector2(velocityIncrement.x * Input.GetAxis(inputHorizontal),
-												(!CheckWater(waterEffect.IsFloating()) && CheckWater(waterEffect.IsUnderWater())) ? -velocityIncrement.y : velocityIncrement.y);
+												(CheckWater(waterEffect.animUnderwater)) ? -velocityIncrement.y : velocityIncrement.y);
 				}
                 if (Mathf.Abs(Input.GetAxis(inputHorizontal)) > 0.1f)
 					facingLeft = Input.GetAxis(inputHorizontal) > 0;
@@ -178,9 +180,9 @@ public class PlayerBehaviour : MonoBehaviour
 				break;
 			case playerState.Floating:
 				if (Mathf.Abs(Input.GetAxisRaw(inputHorizontal)) > 0.2f)
-					rb.velocity = new Vector2(Input.GetAxisRaw(inputHorizontal) * walkingSpeed, rb.velocity.y);
+					rb.velocity = new Vector2(Input.GetAxisRaw(inputHorizontal) * walkingSpeed, 0);
 				else
-					rb.velocity = new Vector2(0, rb.velocity.y);
+					rb.velocity = new Vector2(0, 0);
 				if (Mathf.Abs(Input.GetAxis(inputHorizontal)) > 0.1f)
 					facingLeft = Input.GetAxis(inputHorizontal) > 0;
 				break;
@@ -196,8 +198,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     float GetGravity()
     {
-		if (state == playerState.Floating && CheckWater(true)) return waterEffect.floatingGravity;
-		else if (state == playerState.Diving) return diveGravity;
+		if (state == playerState.Diving) return diveGravity;
 	    else return defaultGravity;
     }
 
@@ -253,12 +254,17 @@ public class PlayerBehaviour : MonoBehaviour
 
 		if (CheckWater(true))
 		{
-			if (waterEffect.IsUnderWater() && state != playerState.Diving) rb.gravityScale = -rb.gravityScale;
-			else if (waterEffect.IsUnderWater() && state == playerState.Diving && rb.velocity.magnitude > waterEffect.diveUnderwaterMaxSpeed) rb.velocity = rb.velocity.normalized * waterEffect.diveUnderwaterMaxSpeed;
+			if (waterEffect.underwater && state != playerState.Diving) rb.gravityScale = -rb.gravityScale;
+			else if (waterEffect.underwater && state == playerState.Diving && rb.velocity.magnitude > waterEffect.diveUnderwaterMaxSpeed)
+			{
+				if (rb.velocity.magnitude - waterEffect.diveSlowdown > waterEffect.diveUnderwaterMaxSpeed)
+					rb.velocity = rb.velocity.normalized * (rb.velocity.magnitude - waterEffect.diveSlowdown);
+				else rb.velocity = rb.velocity.normalized * waterEffect.diveUnderwaterMaxSpeed;
+			}
 		}
 
-		if (CheckWater(waterEffect.IsFloating())) anim.SetLayerWeight(2, 0);
-		else if (CheckWater(waterEffect.IsUnderWater())) anim.SetLayerWeight(2, 1);
+		if (state == playerState.Floating) anim.SetLayerWeight(2, 0);
+		else if (CheckWater(waterEffect.animUnderwater)) anim.SetLayerWeight(2, 1);
 		else anim.SetLayerWeight(2, 0);
 	}
 

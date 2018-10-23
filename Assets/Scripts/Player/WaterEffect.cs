@@ -6,37 +6,38 @@ using UnityEngine;
 public class WaterEffect : MonoBehaviour 
 {
 	public float waterLine;
-	float floatingRange = 20;
+	public float animLine;
 
 	public float diveUnderwaterMaxSpeed;
-	public float floatingGravity;
+	public float diveSlowdown;
 
 	[NonSerialized] public bool underwater;
+	[NonSerialized] public bool animUnderwater;
 
 	public ParticleSystem smallBubbles;
+
+	PlayerBehaviour player;
 	
 	bool lastUnderwater;
+
+	private void Start()
+	{
+		player = GetComponent<PlayerBehaviour>();
+	}
 
 	void Update () 
 	{
 		lastUnderwater = underwater;
 
-		//underwater = (transform.position.y < waterLine) ? true : false;
+		underwater = transform.position.y < waterLine;
+		animUnderwater = transform.position.y < animLine;
 
 		if (lastUnderwater != underwater)
 		{
+			if (player.state != PlayerBehaviour.playerState.Diving)player.state = PlayerBehaviour.playerState.Floating;	
+			
 			if (underwater) smallBubbles.Play();
 			else smallBubbles.Stop();
 		}
-	}
-
-	public bool IsFloating()
-	{
-		return (transform.position.y < waterLine + floatingRange && transform.position.y > waterLine - floatingRange);
-	}
-
-	public bool IsUnderWater()
-	{
-		return (transform.position.y < waterLine) ;
 	}
 }
