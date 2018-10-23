@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: e7b2327bc56ce481b82e03b7d39d2315
+guid: 7ad3061e0ca9743adbe211b9fc8b9c95
 TextureImporter:
   fileIDToRecycleName:
-    21300000: feather_0
-    21300002: feather_1
-    21300004: feather_2
-    21300006: feather_3
-    21300008: feather_4
-    21300010: feather_5
+    21300000: splash_0
+    21300002: splash_1
+    21300004: splash_2
+    21300006: splash_3
+    21300008: splash_4
+    21300010: splash_5
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 1
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -90,13 +90,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: feather_0
+      name: splash_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 4
-        height: 4
+        width: 36
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -104,19 +104,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1abd9a45a58f94df296e7a53f16bc463
+      spriteID: aba1de7cf193a4db7b3a2f749195c0f9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: feather_1
+      name: splash_1
       rect:
         serializedVersion: 2
-        x: 4
+        x: 36
         y: 0
-        width: 4
-        height: 4
+        width: 36
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,19 +124,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e73bfa88e750f4a0180621921c35aee5
+      spriteID: c838019eae68f410a8d2e73a914aba1c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: feather_2
+      name: splash_2
       rect:
         serializedVersion: 2
-        x: 8
+        x: 72
         y: 0
-        width: 4
-        height: 4
+        width: 36
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,19 +144,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03b64a3a2cc0b4b9f9916eec2df126bc
+      spriteID: e274d2df1abc64734b1f233c972d2768
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: feather_3
+      name: splash_3
       rect:
         serializedVersion: 2
-        x: 12
+        x: 108
         y: 0
-        width: 4
-        height: 4
+        width: 36
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,19 +164,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5c86ec6a6bf8411c9e666a9783cc57b
+      spriteID: 0ccd7a8a462a947e6a7d7ab4c5877c2b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: feather_4
+      name: splash_4
       rect:
         serializedVersion: 2
-        x: 11
+        x: 144
         y: 0
-        width: 4
-        height: 4
+        width: 36
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,19 +184,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab1f4a8e9bfed452492314cdc4cf3066
+      spriteID: 549ea5674c5ee419781ad2973cae0b10
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: feather_5
+      name: splash_5
       rect:
         serializedVersion: 2
-        x: 20
+        x: 180
         y: 0
-        width: 4
-        height: 4
+        width: 36
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,7 +204,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af39ab3a7d8124de6b49726bde06248c
+      spriteID: 1d055830619ce4480999e3037dd1af82
       vertices: []
       indices: 
       edges: []
@@ -212,7 +212,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: f8b15aad942174cb2afd73d208ab9320
+    spriteID: 59d6f962698804aaf9826231f08bc3e7
     vertices: []
     indices: 
     edges: []
