@@ -1249,9 +1249,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.099999994
+    x: 0.32760942
     y: 0
-    width: 0.8
+    width: 0.34478116
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -1396,11 +1396,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4023488003555842, guid: 68ad5caf323e76e489f7211549b44877, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 4023488003555842, guid: 68ad5caf323e76e489f7211549b44877, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 4023488003555842, guid: 68ad5caf323e76e489f7211549b44877, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1435,6 +1435,11 @@ Prefab:
         type: 2}
       propertyPath: moveWithTransform
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198837473319499494, guid: 68ad5caf323e76e489f7211549b44877,
+        type: 2}
+      propertyPath: ShapeModule.radius.value
+      value: 0.27941126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68ad5caf323e76e489f7211549b44877, type: 2}
