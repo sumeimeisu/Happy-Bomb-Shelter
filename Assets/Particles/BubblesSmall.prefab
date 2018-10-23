@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4023488003555842}
   - component: {fileID: 198837473319499494}
+  - component: {fileID: 114716768361473636}
   - component: {fileID: 199069908496955330}
   m_Layer: 0
   m_Name: BubblesSmall
@@ -41,6 +42,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114716768361473636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1196111467782336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ef10d1320465d24ca67112b8eaac3f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198837473319499494
 ParticleSystem:
   m_ObjectHideFlags: 1

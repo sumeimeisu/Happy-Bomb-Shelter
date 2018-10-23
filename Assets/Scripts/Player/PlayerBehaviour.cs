@@ -48,8 +48,9 @@ public class PlayerBehaviour : MonoBehaviour
 
 	private float dyingTime;
 
-	[SerializeField]
-	DashAbility dash;
+	[SerializeField] DashAbility dash;
+
+	[SerializeField] WaterEffect waterEffect;
 
 	[NonSerialized] public bool dying;
 	[NonSerialized] public bool diving;
@@ -147,7 +148,7 @@ public class PlayerBehaviour : MonoBehaviour
 				{
 					lastFlap = Time.time;
 					rb.velocity += new Vector2(velocityIncrement.x * Input.GetAxis(inputHorizontal),
-												velocityIncrement.y);
+												(CheckWaterLevel())? -velocityIncrement.y : velocityIncrement.y);
 				}
                 if (Mathf.Abs(Input.GetAxis(inputHorizontal)) > 0.1f)
 					facingLeft = Input.GetAxis(inputHorizontal) > 0;
@@ -196,6 +197,16 @@ public class PlayerBehaviour : MonoBehaviour
 	    return 1;
     }
 
+	bool CheckWaterLevel()
+	{
+		if (!waterEffect) return false;
+
+		if (waterEffect.underwater) anim.SetLayerWeight(2, 1);
+		else anim.SetLayerWeight(2, 0);
+
+		return waterEffect.underwater;
+	}
+
 // Update is called once per frame
 	void Update () {
 		HandleInput();
@@ -206,7 +217,7 @@ public class PlayerBehaviour : MonoBehaviour
 
 		rb.drag = GetRigidbodyDrag();
 		rb.gravityScale = GetGravity();
-		anim.speed = GetAnimationSpeed();
+		//anim.speed = GetAnimationSpeed();
 
 		//TODO figure mirror animation
 		sprite.flipX = facingLeft; // (state != playerState.Dashing && facingLeft) || rb.velocity.x < 0;
@@ -223,6 +234,8 @@ public class PlayerBehaviour : MonoBehaviour
 			if (anim.GetLayerWeight(1) == 0) anim.SetLayerWeight(1, 1);
 			else anim.SetLayerWeight(1, 0);
 		}
+
+		if (CheckWaterLevel()) rb.gravityScale = -rb.gravityScale;
 	}
 
 }
