@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBehaviour : MonoBehaviour
+public class PlayerBehaviour : MovingEntity
 {
 	public enum playerState
 	{
@@ -47,6 +47,15 @@ public class PlayerBehaviour : MonoBehaviour
 	private float defaultLDrag;
 
 	private float dyingTime;
+
+	private int health = 2;
+	private bool vulnerable = false;
+	public float vulnerableTime;
+	private float currentTime;
+
+	[SerializeField] ParticleSystem fallingFeathers;
+
+	[SerializeField] ParticleSystem deathStars;
 
 	[SerializeField] DashAbility dash;
 
@@ -233,8 +242,7 @@ public class PlayerBehaviour : MonoBehaviour
 		rb.gravityScale = GetGravity();
 		//anim.speed = GetAnimationSpeed();
 
-		//TODO figure mirror animation
-		sprite.flipX = facingLeft; // (state != playerState.Dashing && facingLeft) || rb.velocity.x < 0;
+		sprite.flipX = facingLeft;
 
 		anim.SetFloat("velocity_y", rb.velocity.y);
 		anim.SetFloat("velocity_x_abs", Mathf.Abs(rb.velocity.x));
@@ -244,10 +252,15 @@ public class PlayerBehaviour : MonoBehaviour
 		anim.SetBool("Dashing", state == playerState.Dashing);
 		anim.SetBool("Floating", state == playerState.Floating);
 
-		if (Input.GetKeyDown(KeyCode.H))
+		if (vulnerable)
 		{
-			if (anim.GetLayerWeight(1) == 0) anim.SetLayerWeight(1, 1);
-			else anim.SetLayerWeight(1, 0);
+			if (Time.time > currentTime + vulnerableTime)
+			{
+				vulnerable = false;
+				anim.SetLayerWeight(1, 0);
+				fallingFeathers.Stop();
+				health = 2;
+			}
 		}
 
 		if (CheckWater(true))
@@ -266,4 +279,41 @@ public class PlayerBehaviour : MonoBehaviour
 		else anim.SetLayerWeight(2, 0);
 	}
 
+	public void TakeDamage()
+	{
+		health--;
+		if (health <= 0)
+		{
+			Death();
+			return;
+		}
+		currentTime = Time.time;
+		vulnerable = true;
+		anim.SetLayerWeight(1, 1);
+		fallingFeathers.Play();
+	}
+
+	public void Death()
+	{
+		Instantiate(deathStars, transform.position, Quaternion.identity);
+		Destroy(gameObject);
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (state == playerState.Diving)
+		{
+			MovingEntity enemy = collision.gameObject.GetComponent<MovingEntity>();
+			if (enemy) enemy.divedOnto(collision);
+		}
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.CompareTag("Bullet"))
+		{
+			TakeDamage();
+			Destroy(collision.gameObject);
+		}
+	}
 }

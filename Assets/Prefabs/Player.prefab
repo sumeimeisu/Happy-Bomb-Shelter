@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114730948829430836}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,6 +126,7 @@ MonoBehaviour:
   diveGravity: 30
   bulletCollider: {fileID: 61619809826030198}
   dash: {fileID: 114730948829430836}
+  waterEffect: {fileID: 0}
   inputHorizontal: Horizontal
   inputVertical: Vertical
   inputFlap: Flap
@@ -149,7 +150,7 @@ MonoBehaviour:
   baseCooldown: 4
   momentumConservation: 0.2
   momentumConservationDiving: 0.4
-  currentPoints: 0
+  currentPoints: 3
   currentCooldown: 0
   timeLeft: 0
   direction: {x: 0, y: 0}
