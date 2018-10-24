@@ -1112,6 +1112,7 @@ GameObject:
   - component: {fileID: 494789785}
   - component: {fileID: 494789784}
   - component: {fileID: 494789787}
+  - component: {fileID: 494789788}
   m_Layer: 0
   m_Name: BalloonBot
   m_TagString: Untagged
@@ -1209,6 +1210,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc4131af1e402cb46ae9d890852e1f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &494789788
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 494789783}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &565430026
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,9 +1422,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.3278027
+    x: 0.099999994
     y: 0
-    width: 0.34439462
+    width: 0.8
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -1905,6 +1926,11 @@ Prefab:
       propertyPath: walkingSpeed
       value: 38
       objectReference: {fileID: 0}
+    - target: {fileID: 50754013755739784, guid: e78e5088ab21900489dc2668436b1624,
+        type: 2}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114730948829430836, guid: e78e5088ab21900489dc2668436b1624, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: e78e5088ab21900489dc2668436b1624, type: 2}
@@ -2006,7 +2032,7 @@ MonoBehaviour:
   splashOffset: 8
   diveUnderwaterMaxSpeed: 35
   diveSlowdown: 12
-  underwater: 0
+  breakthroughSpeed: 150
   smallBubbles: {fileID: 1582648496}
   splash: {fileID: 198452568115139270, guid: e056e2eb8db56e84792800814f0667f4, type: 2}
 --- !u!198 &1582648496 stripped

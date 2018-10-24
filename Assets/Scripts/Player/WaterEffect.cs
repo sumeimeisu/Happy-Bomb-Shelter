@@ -11,8 +11,9 @@ public class WaterEffect : MonoBehaviour
 
 	public float diveUnderwaterMaxSpeed;
 	public float diveSlowdown;
+	public float breakthroughSpeed;
 
-	public bool underwater;
+	[NonSerialized] public bool underwater;
 	[NonSerialized] public bool animUnderwater;
 
 	public ParticleSystem smallBubbles;
@@ -38,7 +39,7 @@ public class WaterEffect : MonoBehaviour
 
 		if (lastUnderwater != underwater)
 		{
-			if (player.state != PlayerBehaviour.playerState.Diving) player.state = PlayerBehaviour.playerState.Floating;
+			if (player.state != PlayerBehaviour.playerState.Diving && player.rb.velocity.magnitude < breakthroughSpeed) player.state = PlayerBehaviour.playerState.Floating;
 			if (player.state == PlayerBehaviour.playerState.Diving)	Instantiate(splash, new Vector2(transform.position.x, waterLine + splashOffset), Quaternion.identity);
 
 			if (underwater) smallBubbles.Play();
