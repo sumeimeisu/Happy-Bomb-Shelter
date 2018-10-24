@@ -7,14 +7,16 @@ public class WaterEffect : MonoBehaviour
 {
 	public float waterLine;
 	public float animLine;
+	public float splashOffset;
 
 	public float diveUnderwaterMaxSpeed;
 	public float diveSlowdown;
 
-	[NonSerialized] public bool underwater;
+	public bool underwater;
 	[NonSerialized] public bool animUnderwater;
 
 	public ParticleSystem smallBubbles;
+	public ParticleSystem splash;
 
 	PlayerBehaviour player;
 	
@@ -29,13 +31,16 @@ public class WaterEffect : MonoBehaviour
 	{
 		lastUnderwater = underwater;
 
-		underwater = transform.position.y < waterLine;
+		underwater = transform.position.y <= waterLine;
+		if (player.state == PlayerBehaviour.playerState.Floating) underwater = true;
+
 		animUnderwater = transform.position.y < animLine;
 
 		if (lastUnderwater != underwater)
 		{
-			if (player.state != PlayerBehaviour.playerState.Diving)player.state = PlayerBehaviour.playerState.Floating;	
-			
+			if (player.state != PlayerBehaviour.playerState.Diving) player.state = PlayerBehaviour.playerState.Floating;
+			if (player.state == PlayerBehaviour.playerState.Diving)	Instantiate(splash, new Vector2(transform.position.x, waterLine + splashOffset), Quaternion.identity);
+
 			if (underwater) smallBubbles.Play();
 			else smallBubbles.Stop();
 		}
