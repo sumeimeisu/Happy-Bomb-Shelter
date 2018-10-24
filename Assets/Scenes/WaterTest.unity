@@ -1401,9 +1401,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.099999994
+    x: 0.3278027
     y: 0
-    width: 0.8
+    width: 0.34439462
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -2003,7 +2003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterLine: 10
   animLine: 0
-  splashOffset: 18
+  splashOffset: 8
   diveUnderwaterMaxSpeed: 35
   diveSlowdown: 12
   underwater: 0
