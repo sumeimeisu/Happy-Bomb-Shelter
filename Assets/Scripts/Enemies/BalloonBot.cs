@@ -53,7 +53,7 @@ public class BalloonBot : MovingEntity
 		PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 		DroneAnimator = GetComponent<Animator>();
 
-		//StartCoroutine(ShootLoop());
+		StartCoroutine(ShootLoop());
 	}
 
 	void Update()

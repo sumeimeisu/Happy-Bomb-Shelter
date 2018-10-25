@@ -85,7 +85,7 @@ public class PlayerBehaviour : MovingEntity
 		defaultLDrag = rb.drag;
 		sprite = GetComponent<SpriteRenderer>();
 
-		dash.Initialize(this);
+		//dash.Initialize(this);
 	}
 
 	bool IsGrounded()

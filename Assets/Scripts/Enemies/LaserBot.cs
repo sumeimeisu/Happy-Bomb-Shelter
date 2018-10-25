@@ -47,6 +47,8 @@ public class LaserBot : MonoBehaviour
 
 	private void Update()
 	{
+		if (!playerTransform) return; 
+
 		if (node1 && node2)
 		{
 			UpdateLineStaticPosition();

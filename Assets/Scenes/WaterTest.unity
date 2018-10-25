@@ -1196,7 +1196,7 @@ MonoBehaviour:
   attackCycle: 3
   node1: {fileID: 1602690810}
   node2: {fileID: 815211080}
-  lineStatic: {fileID: 0}
+  lineStatic: {fileID: 951282378}
   smallExplosion: {fileID: 198794786596129136, guid: 7162fbdd7dc5e6a468691c5495159dae,
     type: 2}
 --- !u!4 &541490756
@@ -1525,10 +1525,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.28357488
-    y: 0
-    width: 0.43285027
-    height: 1
+    x: 0
+    y: 0.26889157
+    width: 1
+    height: 0.46221688
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -1594,7 +1594,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 800387761}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ba5113e7208c4316acb1028a08587a2, type: 3}
   m_Name: 
@@ -1924,6 +1924,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4796022049543122, guid: 872f12ec2725c014f8f78fae9d5b7e15,
     type: 2}
   m_PrefabInternal: {fileID: 650382235}
+--- !u!198 &951282378 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198422726123502168, guid: dd70ae0e510c946bba021d4f00cd8623,
+    type: 2}
+  m_PrefabInternal: {fileID: 1865623544}
 --- !u!4 &980202305 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4983649123597028, guid: a4df5d57cfb74234ebffc2b107e88515,
@@ -2491,6 +2496,11 @@ Prefab:
     - target: {fileID: 4302189922765574, guid: e78e5088ab21900489dc2668436b1624, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114735188297187918, guid: e78e5088ab21900489dc2668436b1624,
+        type: 2}
+      propertyPath: diveSlowdown
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e78e5088ab21900489dc2668436b1624, type: 2}
