@@ -16,27 +16,66 @@ public class LaserBot : MonoBehaviour
 
 	}
 
+	#region Properties
+	[Header("Movement")]
+	public float speed;
+	public float radius;
+	public float spinRate;
+	public float knockback;
+	public float attackCycle;
+	#endregion
+
+	#region References
+	[Header("References")]
 	Transform playerTransform;
 
 	public LaserBotNode node1;
 	public LaserBotNode node2;
 
-	public float speed;
-	public float radius;
-	public float spinRate;
+	public ParticleSystem lineStatic;
+
+	public ParticleSystem smallExplosion;
+	#endregion
+
+	private bool onlyOnce = true; 
 
 	private void Start()
 	{
 		playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+		StartCoroutine(DualAttackPattern());
 	}
 
 	private void Update()
 	{
 		if (node1 && node2)
 		{
+			UpdateLineStaticPosition();
+
 			Vector3[] positions = FindTargetPosition();
 			node1.MoveToTarget(playerTransform.position + positions[0]);
 			node2.MoveToTarget(playerTransform.position + positions[1]);
+		}
+		else if (node1)
+		{
+			node1.MoveToTarget(playerTransform.position);
+			if (onlyOnce)
+			{
+				StartCoroutine(SingleAttackPattern(node1));
+				onlyOnce = false;
+			}
+		}
+		else if (node2)
+		{
+			node2.MoveToTarget(playerTransform.position);
+			if (onlyOnce)
+			{
+				StartCoroutine(SingleAttackPattern(node2));
+				onlyOnce = false;
+			}
+		}
+		else 
+		{
+			Destroy(gameObject);
 		}
 	}
 
@@ -46,23 +85,46 @@ public class LaserBot : MonoBehaviour
 
 		Vector3 targetPos = new Vector3(Mathf.Sin(Time.time * spinRate), Mathf.Cos(Time.time * spinRate)) * radius;
 
-		Debug.DrawRay(playerTransform.position - targetPos, Vector3.up * radius, Color.green);
-		Debug.DrawRay(playerTransform.position + targetPos, Vector3.up * radius, Color.red);
-
-
 		targetPositions[0] = targetPos;
 		targetPositions[1] = -targetPos;
 		
 		return targetPositions;	
 	}
 
-	IEnumerator AttackPattern()
+	public IEnumerator DualAttackPattern()
 	{
-		yield return null;
+		while (true)
+		{
+			yield return new WaitForSeconds(attackCycle);
+			node1.circleStatic.Play();
+			node2.circleStatic.Play();
+			lineStatic.Play();
+			yield return new WaitForSeconds(attackCycle);
+			node1.circleStatic.Stop();
+			node2.circleStatic.Stop();
+			lineStatic.Stop();
+		}
 	}
 
-	void FindTargetPositionSingle()
+	public IEnumerator SingleAttackPattern(LaserBotNode node)
 	{
+		while(true)
+		{
+			yield return new WaitForSeconds(attackCycle);
+			node.circleStatic.Play();
+			yield return new WaitForSeconds(attackCycle);
+			node.circleStatic.Stop();
+		}
+	}
 
+	void UpdateLineStaticPosition()
+	{
+		var sh = lineStatic.shape;
+
+		lineStatic.transform.position = (node2.transform.position - node1.transform.position) / 2 + node1.transform.position;
+		Quaternion rotation = Quaternion.FromToRotation(Vector3.right, lineStatic.transform.position - node1.transform.position);
+		lineStatic.transform.rotation = rotation;
+
+		sh.scale = new Vector3((node1.transform.position - node2.transform.position).magnitude, 1, 1);
 	}
 }

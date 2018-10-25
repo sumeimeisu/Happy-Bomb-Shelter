@@ -34,7 +34,8 @@ public class BalloonBot : MovingEntity
 	private float FireRate;
 	[SerializeField]
 	private float deathFallingRate;
-
+	[SerializeField]
+	private float hoverAboveWaterLevel;
 	private bool facingLeft;
 	#endregion
 
@@ -52,7 +53,7 @@ public class BalloonBot : MovingEntity
 		PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 		DroneAnimator = GetComponent<Animator>();
 
-		StartCoroutine(ShootLoop());
+		//StartCoroutine(ShootLoop());
 	}
 
 	void Update()
@@ -66,14 +67,15 @@ public class BalloonBot : MovingEntity
 		else
 		{
 			transform.position -= Vector3.up * deathFallingRate;
-			if (transform.position.y < GameController.instance.waterline)
-			{
-				// Instantiate Explosion
-				Destroy(gameObject);
-			}
 		}
 
 		facingLeft = PlayerTransform.position.x < transform.position.x;
+
+		if (transform.position.y < GameController.instance.waterline)
+		{
+			Instantiate(DeathExplosion, transform.position, Quaternion.identity);
+			Destroy(gameObject);
+		}
 	}
 
 	public void TakeDamage()
@@ -92,6 +94,7 @@ public class BalloonBot : MovingEntity
 		DroneAnimator.SetTrigger("Death");
 		collider2.enabled = false;
 		rb.velocity = Vector2.zero;
+		StopAllCoroutines();
 	}
 
 	// may have to change to rigidbody movement...
@@ -109,7 +112,13 @@ public class BalloonBot : MovingEntity
 			TargetPosition = PlayerTransform.position - Vector3.right * distanceFromPlayer;
 		}
 
-		Vector3 Direction = (TargetPosition - transform.position);
+		Vector3 Direction = new Vector3();
+
+		if (PlayerTransform.position.y < GameController.instance.waterline + hoverAboveWaterLevel)
+			TargetPosition = new Vector3(PlayerTransform.position.x, GameController.instance.waterline + hoverAboveWaterLevel);
+
+
+		Direction = (TargetPosition - transform.position);
 		// Do not move if close enough to the player
 		if (Direction.magnitude < 5.0f)
 		{
@@ -120,6 +129,8 @@ public class BalloonBot : MovingEntity
 			return;
 		}
 		Vector3 Velocity = Direction.normalized;
+
+		// Don't move y if player is underwater
 		transform.position += Velocity * Time.deltaTime * Speed;
 	}
 

@@ -230,6 +230,7 @@ MonoBehaviour:
   distanceFromPlayer: 50
   FireRate: 5
   deathFallingRate: 1
+  hoverAboveWaterLevel: 30
   GrenadePrefab: {fileID: 1900189208470846, guid: fca942c0e512ccd4bbf72c8211595f88,
     type: 2}
   DeathExplosion: {fileID: 198041354117304356, guid: dede440286a19a24a8ff34c89fb02777,
