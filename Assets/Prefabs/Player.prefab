@@ -216,7 +216,7 @@ MonoBehaviour:
   animLine: 0
   splashOffset: 8
   diveUnderwaterMaxSpeed: 35
-  diveSlowdown: 12
+  diveSlowdown: 15
   breakthroughSpeed: 150
   smallBubbles: {fileID: 198344853972444768}
   splash: {fileID: 198452568115139270, guid: e056e2eb8db56e84792800814f0667f4, type: 2}

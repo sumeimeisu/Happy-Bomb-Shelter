@@ -110,7 +110,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1065400825751166}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 156.8, y: 78.5, z: 0}
+  m_LocalPosition: {x: 129.7, y: 150.4, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 4730743644381088}
@@ -221,16 +221,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc4131af1e402cb46ae9d890852e1f98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockback: 0.02
+  knockback: 0.2
   DroneProjectilesPool: {fileID: 0}
   DroneGunOutputTransforms: {fileID: 4814969628074844}
   collider1: {fileID: 61761284948593506}
   collider2: {fileID: 58724766390780900}
   Speed: 20
-  distanceFromPlayer: 50
+  distanceFromPlayer: 40
   FireRate: 5
-  deathFallingRate: 1
-  hoverAboveWaterLevel: 30
+  deathFallingRate: 1.5
+  hoverAboveWaterLevel: 50
   GrenadePrefab: {fileID: 1900189208470846, guid: fca942c0e512ccd4bbf72c8211595f88,
     type: 2}
   DeathExplosion: {fileID: 198041354117304356, guid: dede440286a19a24a8ff34c89fb02777,
