@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BalloonBot : MovingEntity
 {
+	public float knockback;
 
 	[Header("References")]
 	#region References
@@ -13,9 +14,12 @@ public class BalloonBot : MovingEntity
 	private Transform DroneGunOutputTransforms;
 	private Animator DroneAnimator;
 	[SerializeField]
-	private CircleCollider2D[] balloons = new CircleCollider2D[3];
+	private BoxCollider2D collider1;
+	[SerializeField]
+	private CircleCollider2D collider2;
 
 	private Transform PlayerTransform;
+	private Rigidbody2D rb;
 	#endregion
 
 	[Header("Properties")]
@@ -28,6 +32,8 @@ public class BalloonBot : MovingEntity
 	[SerializeField]
 	[Tooltip("Idle time between shots")]
 	private float FireRate;
+	[SerializeField]
+	private float deathFallingRate;
 
 	private bool facingLeft;
 	#endregion
@@ -36,10 +42,13 @@ public class BalloonBot : MovingEntity
 	#region Prefabs
 	[SerializeField]
 	private GameObject GrenadePrefab;
+	[SerializeField]
+	private ParticleSystem DeathExplosion;
 	#endregion
 
 	void Start()
 	{
+		rb = GetComponent<Rigidbody2D>();
 		PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 		DroneAnimator = GetComponent<Animator>();
 
@@ -53,7 +62,16 @@ public class BalloonBot : MovingEntity
 
 		if (!PlayerTransform) return;
 
-		MoveAbovePlayer();
+		if (health > 0) MoveAbovePlayer();
+		else
+		{
+			transform.position -= Vector3.up * deathFallingRate;
+			if (transform.position.y < GameController.instance.waterline)
+			{
+				// Instantiate Explosion
+				Destroy(gameObject);
+			}
+		}
 
 		facingLeft = PlayerTransform.position.x < transform.position.x;
 	}
@@ -64,10 +82,16 @@ public class BalloonBot : MovingEntity
 		if (health > 0)
 		{
 			DroneAnimator.SetLayerWeight(1, 1);
-			balloons[0].enabled = balloons[1].enabled = false;
-			balloons[2].enabled = true;
+			StartCoroutine(WaitForColliderSwitch());
 		}
-		else Destroy(gameObject);
+		else Death();
+	}
+
+	void Death()
+	{
+		DroneAnimator.SetTrigger("Death");
+		collider2.enabled = false;
+		rb.velocity = Vector2.zero;
 	}
 
 	// may have to change to rigidbody movement...
@@ -101,7 +125,16 @@ public class BalloonBot : MovingEntity
 
 	override public void divedOnto(Collision2D collision)
 	{
+		rb.AddForce(-collision.relativeVelocity * knockback, ForceMode2D.Impulse);
 		TakeDamage();
+		//Debug.Log("Bot: " + collision.relativeVelocity.magnitude);
+	}
+
+	IEnumerator WaitForColliderSwitch()
+	{
+		yield return new WaitForSeconds(0.1f);
+		collider1.enabled = false;
+		collider2.enabled = true;
 	}
 
 	IEnumerator ShootLoop()

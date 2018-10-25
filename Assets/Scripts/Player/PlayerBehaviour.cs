@@ -27,6 +27,8 @@ public class PlayerBehaviour : MovingEntity
 
 	[SerializeField] private float diveGravity;
 
+	[SerializeField] private float knockback;
+
 	[Header("References")] [SerializeField]
 	private BoxCollider2D bulletCollider;
 
@@ -303,6 +305,20 @@ public class PlayerBehaviour : MovingEntity
 	{
 		if (state == playerState.Diving)
 		{
+			Debug.Log("Player: " + collision.relativeVelocity.magnitude);
+
+
+			foreach (ContactPoint2D contact in collision.contacts)
+			{
+				Vector2 knockbackDirection = Vector2.Reflect(-collision.relativeVelocity, contact.normal);
+
+				rb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
+
+				Debug.DrawRay(contact.point, collision.relativeVelocity.normalized * 20, Color.white, 10f);
+				Debug.DrawRay(contact.point, contact.normal.normalized * 20, Color.green, 10f);
+				Debug.DrawRay(contact.point, knockbackDirection.normalized * 20, Color.red, 10f);
+			}
+
 			MovingEntity enemy = collision.gameObject.GetComponent<MovingEntity>();
 			if (enemy) enemy.divedOnto(collision);
 		}

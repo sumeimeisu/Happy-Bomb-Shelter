@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class WaterEffect : MonoBehaviour 
 {
+	[NonSerialized]
 	public float waterLine;
 	public float animLine;
 	public float splashOffset;
@@ -26,6 +27,7 @@ public class WaterEffect : MonoBehaviour
 	private void Start()
 	{
 		player = GetComponent<PlayerBehaviour>();
+		waterLine = GameController.instance.waterline;
 	}
 
 	void Update () 
