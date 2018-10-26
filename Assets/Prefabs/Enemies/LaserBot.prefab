@@ -468,7 +468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0.25
   radius: 40
-  spinRate: 0.5
+  spinRate: 0.01
   knockback: 0.1
   attackCycle: 5
   hoverAboveWaterLevel: 50
