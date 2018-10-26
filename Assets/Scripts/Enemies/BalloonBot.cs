@@ -44,7 +44,7 @@ public class BalloonBot : MovingEntity
 	[SerializeField]
 	private GameObject GrenadePrefab;
 	[SerializeField]
-	private ParticleSystem DeathExplosion;
+	private GameObject DeathExplosion;
 	#endregion
 
 	void Start()
@@ -73,7 +73,7 @@ public class BalloonBot : MovingEntity
 
 		if (transform.position.y < GameController.instance.waterline)
 		{
-			Instantiate(DeathExplosion, transform.position, Quaternion.identity);
+			GameObject explosion = Instantiate(DeathExplosion, transform.position, Quaternion.identity);
 			Destroy(gameObject);
 		}
 	}

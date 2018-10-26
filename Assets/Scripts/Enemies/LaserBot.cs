@@ -26,7 +26,7 @@ public class LaserBot : MonoBehaviour
 
 	public ParticleSystem lineStatic;
 
-	public ParticleSystem smallExplosion;
+	public GameObject explosion;
 
 	public BoxCollider2D lineStaticTrigger;
 

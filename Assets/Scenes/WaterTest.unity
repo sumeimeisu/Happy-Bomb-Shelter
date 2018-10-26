@@ -1435,6 +1435,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114646719932017900, guid: 8fe26a9eafc8e40188570f37ac87fbf1,
+        type: 2}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 1552372733183016, guid: 7aca5f3d814635d43ab7dc9c7528f850,
+        type: 2}
+    - target: {fileID: 1028476268837440, guid: 8fe26a9eafc8e40188570f37ac87fbf1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fe26a9eafc8e40188570f37ac87fbf1, type: 2}
   m_IsPrefabAsset: 0
@@ -1728,9 +1738,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.28357488
+    x: 0.0055330396
     y: 0
-    width: 0.43285027
+    width: 0.9889339
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -3460,23 +3470,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114706902503497878, guid: 872f12ec2725c014f8f78fae9d5b7e15,
+        type: 2}
+      propertyPath: DroneProjectilesPool
+      value: 
+      objectReference: {fileID: 200014890}
     - target: {fileID: 1065400825751166, guid: 872f12ec2725c014f8f78fae9d5b7e15, type: 2}
       propertyPath: m_Name
       value: BalloonBot (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1065400825751166, guid: 872f12ec2725c014f8f78fae9d5b7e15, type: 2}
       propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114706902503497878, guid: 872f12ec2725c014f8f78fae9d5b7e15,
-        type: 2}
-      propertyPath: DroneProjectilesPool
-      value: 
-      objectReference: {fileID: 200014890}
-    - target: {fileID: 114706902503497878, guid: 872f12ec2725c014f8f78fae9d5b7e15,
-        type: 2}
-      propertyPath: knockback
-      value: 0.3
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 872f12ec2725c014f8f78fae9d5b7e15, type: 2}

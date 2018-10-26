@@ -21,7 +21,7 @@ public class LaserBotNode : MovingEntity
 	{
 		if (transform.position.y < GameController.instance.waterline)
 		{
-			Instantiate(parent.smallExplosion, transform.position, Quaternion.identity);
+			GameObject explosion = Instantiate(parent.explosion, transform.position, Quaternion.identity);
 			parent.StopAllCoroutines();
 			Destroy(gameObject);
 		}
