@@ -12,17 +12,14 @@ public class LaserBot : MonoBehaviour
 	*/
 
 	#region Properties
-	[Header("Movement")]
+	[Header("Movement")] [SerializeField]
 	public float speed;
 	public float radius;
 	public float spinRate;
 	public float knockback;
 	public float attackCycle;
-	#endregion
 
-	#region References
-	[Header("References")]
-	Transform playerTransform;
+	[Header("References")] [SerializeField]
 
 	public LaserBotNode node1;
 	public LaserBotNode node2;
@@ -30,6 +27,10 @@ public class LaserBot : MonoBehaviour
 	public ParticleSystem lineStatic;
 
 	public ParticleSystem smallExplosion;
+
+	public BoxCollider2D lineStaticTrigger;
+
+	Transform playerTransform;
 	#endregion
 
 	private bool onlyOnce = true; 
@@ -96,24 +97,34 @@ public class LaserBot : MonoBehaviour
 		{
 			yield return new WaitForSeconds(attackCycle);
 			node1.circleStatic.Play();
+			node1.CycleAttack();
 			node2.circleStatic.Play();
+			node2.CycleAttack();
+
+			lineStaticTrigger.enabled = true;
 			lineStatic.Play();
 			
 			yield return new WaitForSeconds(attackCycle);
 			node1.circleStatic.Stop();
+			node1.CycleAttack();
 			node2.circleStatic.Stop();
+			node2.CycleAttack();
+
+			lineStaticTrigger.enabled = false;
 			lineStatic.Stop();
 		}
 	}
-
+	
 	public IEnumerator SingleAttackPattern(LaserBotNode node)
 	{
 		while(true)
 		{
 			yield return new WaitForSeconds(attackCycle);
 			node.circleStatic.Play();
+			node.CycleAttack();
 			yield return new WaitForSeconds(attackCycle);
 			node.circleStatic.Stop();
+			node.CycleAttack();
 		}
 	}
 
@@ -126,5 +137,7 @@ public class LaserBot : MonoBehaviour
 		lineStatic.transform.rotation = rotation;
 
 		sh.scale = new Vector3((node1.transform.position - node2.transform.position).magnitude, 1, 1);
+
+		lineStaticTrigger.size = new Vector2((node1.transform.position - node2.transform.position).magnitude, 10);
 	}
 }

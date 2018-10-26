@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaserBotNode : MovingEntity 
+public class LaserBotNode : MovingEntity
 {
 	[SerializeField] private LaserBot parent;
 
 	private Rigidbody2D rb;
 
 	public ParticleSystem circleStatic;
+
+	[SerializeField] private CircleCollider2D trigger;
 
 	private void Start()
 	{
@@ -38,4 +40,11 @@ public class LaserBotNode : MovingEntity
 	{
 		rb.AddForce(-collision.relativeVelocity * parent.knockback, ForceMode2D.Impulse);
 	}
+
+	public void CycleAttack()
+	{
+		trigger.enabled = !trigger.enabled;
+	}
+
+	
 }

@@ -92,7 +92,7 @@ public class BalloonBot : MovingEntity
 	void Death()
 	{
 		DroneAnimator.SetTrigger("Death");
-		collider2.enabled = false;
+		collider2.enabled = collider1.enabled = false;
 		rb.velocity = Vector2.zero;
 		StopAllCoroutines();
 	}

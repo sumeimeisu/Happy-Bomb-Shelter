@@ -23,6 +23,8 @@ public class PlayerBehaviour : MovingEntity
 
 	[SerializeField] private float walkingSpeed;
 
+	[SerializeField] private float floatingSpeed;
+
 	[SerializeField] private float walkingLDrag;
 
 	[SerializeField] private float diveGravity;
@@ -43,6 +45,8 @@ public class PlayerBehaviour : MovingEntity
 	private float lastFlap;
 
 	private bool dead = false;
+
+	private bool hasCollided = false;
 
 	private float defaultGravity;
 
@@ -90,8 +94,8 @@ public class PlayerBehaviour : MovingEntity
 
 	bool IsGrounded()
 	{
-        return Physics2D.Raycast(transform.position + 10 * (Vector3)Vector2.down,
-	        Vector2.down, 5f,
+        return Physics2D.Raycast(transform.position + 6 * (Vector3)Vector2.down,
+	        Vector2.down, 4f,
 	        1 << LayerMask.NameToLayer("Ground")
 		);
 	}
@@ -126,9 +130,11 @@ public class PlayerBehaviour : MovingEntity
 				}	
 				break;
 			case playerState.Grounded:
+				/*
 				if (Input.GetButtonDown(inputDash))
 					dash.tryDash();
-				else if (!IsGrounded())
+				*/
+				if (!IsGrounded() || Input.GetButtonDown(inputFlap))
 					state = playerState.Flying;
 				break;
 			case playerState.Dashing:
@@ -164,9 +170,12 @@ public class PlayerBehaviour : MovingEntity
 		{
 			case playerState.Grounded:
 				if (Mathf.Abs(Input.GetAxisRaw(inputHorizontal)) > 0.2f)
-					rb.velocity += Vector2.right * Input.GetAxisRaw(inputHorizontal) * walkingSpeed;
+					rb.velocity = new Vector2(Input.GetAxisRaw(inputHorizontal) * walkingSpeed, rb.velocity.y);
 				else
 					rb.velocity = new Vector2(0, rb.velocity.y);
+
+				if (Mathf.Abs(Input.GetAxis(inputHorizontal)) > 0.1f)
+					facingLeft = Input.GetAxis(inputHorizontal) > 0;
 				break;
 			case playerState.Flying:
 				if (Input.GetButtonDown(inputFlap))
@@ -188,7 +197,7 @@ public class PlayerBehaviour : MovingEntity
 			case playerState.Floating:
 				transform.position = new Vector3(transform.position.x, waterEffect.waterLine, transform.position.z);
 				if (Mathf.Abs(Input.GetAxisRaw(inputHorizontal)) > 0.2f)
-					rb.velocity = new Vector2(Input.GetAxisRaw(inputHorizontal) * walkingSpeed, 0);
+					rb.velocity = new Vector2(Input.GetAxisRaw(inputHorizontal) * floatingSpeed, 0);
 				else
 					rb.velocity = new Vector2(0, 0);
 				if (Mathf.Abs(Input.GetAxis(inputHorizontal)) > 0.1f)
@@ -206,7 +215,8 @@ public class PlayerBehaviour : MovingEntity
 
     float GetGravity()
     {
-		if (state == playerState.Diving) return diveGravity;
+		if (state == playerState.Grounded) return 0f;
+		else if (state == playerState.Diving) return diveGravity;
 	    else return defaultGravity;
     }
 
@@ -234,13 +244,14 @@ public class PlayerBehaviour : MovingEntity
 
 // Update is called once per frame
 	void Update () {
+		//Debug.Log(rb.velocity + " " + IsGrounded());
 		HandleInput();
 
 		UpdateMovement();
 
 		diving = Input.GetButton(inputDive);
 
-		rb.drag = GetRigidbodyDrag();
+		//rb.drag = GetRigidbodyDrag();
 		rb.gravityScale = GetGravity();
 		//anim.speed = GetAnimationSpeed();
 
@@ -281,9 +292,9 @@ public class PlayerBehaviour : MovingEntity
 		else anim.SetLayerWeight(2, 0);
 	}
 
-	public void TakeDamage()
+	public void TakeDamage(int damage)
 	{
-		health--;
+		health -= damage;
 		if (health <= 0)
 		{
 			Death();
@@ -305,24 +316,25 @@ public class PlayerBehaviour : MovingEntity
 	{
 		if (state == playerState.Diving)
 		{
-			Debug.Log("Player: " + collision.relativeVelocity.magnitude);
+			ContactPoint2D[] contacts = collision.contacts;
+			/*
+			Debug.DrawRay(contact.point, collision.relativeVelocity.normalized * 20, Color.white, 10f);
+			Debug.DrawRay(contact.point, contact.normal.normalized * 20, Color.green, 10f);
+			Debug.DrawRay(contact.point, knockbackDirection.normalized * 20, Color.red, 10f);
+			*/
 
+			//Debug.Log(contacts[0].collider.gameObject);
 
-			foreach (ContactPoint2D contact in collision.contacts)
+			MovingEntity enemy = collision.gameObject.GetComponent<MovingEntity>();
+			if (enemy)
 			{
-				Vector2 knockbackDirection = Vector2.Reflect(-collision.relativeVelocity, contact.normal);
+				Vector2 knockbackDirection = Vector2.Reflect(-collision.relativeVelocity, contacts[0].normal);
 
 				rb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
 
-				/*
-				Debug.DrawRay(contact.point, collision.relativeVelocity.normalized * 20, Color.white, 10f);
-				Debug.DrawRay(contact.point, contact.normal.normalized * 20, Color.green, 10f);
-				Debug.DrawRay(contact.point, knockbackDirection.normalized * 20, Color.red, 10f);
-				*/
-			}
+				enemy.divedOnto(collision);
 
-			MovingEntity enemy = collision.gameObject.GetComponent<MovingEntity>();
-			if (enemy) enemy.divedOnto(collision);
+			}
 		}
 	}
 
@@ -330,8 +342,12 @@ public class PlayerBehaviour : MovingEntity
 	{
 		if (collision.CompareTag("Bullet"))
 		{
-			TakeDamage();
+			TakeDamage(1);
 			Destroy(collision.gameObject);
+		}
+		else if (collision.CompareTag("ElectricField"))
+		{
+			TakeDamage(2);
 		}
 	}
 }

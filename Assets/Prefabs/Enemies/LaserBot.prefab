@@ -71,9 +71,10 @@ GameObject:
   - component: {fileID: 4267571034372992}
   - component: {fileID: 198376583432188348}
   - component: {fileID: 199896711104918192}
+  - component: {fileID: 61749824854382856}
   m_Layer: 0
   m_Name: LaserStatic
-  m_TagString: Untagged
+  m_TagString: ElectricField
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,7 +112,7 @@ GameObject:
   - component: {fileID: 114327984402285596}
   m_Layer: 0
   m_Name: LaserBotNode1
-  m_TagString: Untagged
+  m_TagString: ElectricField
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -149,7 +150,7 @@ GameObject:
   - component: {fileID: 114549615740420562}
   m_Layer: 0
   m_Name: LaserBotNode2
-  m_TagString: Untagged
+  m_TagString: ElectricField
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,7 +189,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1028476268837440}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 49, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4247452119265850}
@@ -204,7 +205,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1766741455231442}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.2, y: 17.1, z: 0}
+  m_LocalPosition: {x: 144.6, y: 125.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4859832564838980}
@@ -365,6 +366,31 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 16
+--- !u!61 &61749824854382856
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1592588983222680}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 50, y: 10}
+  m_EdgeRadius: 0
 --- !u!95 &95385021959595352
 Animator:
   serializedVersion: 3
@@ -414,6 +440,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 114646719932017900}
   circleStatic: {fileID: 198464578272018552}
+  trigger: {fileID: 58006819027632476}
 --- !u!114 &114549615740420562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -427,6 +454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 114646719932017900}
   circleStatic: {fileID: 198096128353524884}
+  trigger: {fileID: 58976597984621332}
 --- !u!114 &114646719932017900
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -448,6 +476,7 @@ MonoBehaviour:
   lineStatic: {fileID: 198376583432188348}
   smallExplosion: {fileID: 198794786596129136, guid: 7162fbdd7dc5e6a468691c5495159dae,
     type: 2}
+  lineStaticTrigger: {fileID: 61749824854382856}
 --- !u!198 &198096128353524884
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -460,7 +489,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -9526,7 +9555,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -14059,7 +14088,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -18592,7 +18621,7 @@ ParticleSystem:
   stopAction: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
