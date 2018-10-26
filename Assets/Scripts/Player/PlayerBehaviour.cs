@@ -243,6 +243,12 @@ public class PlayerBehaviour : MovingEntity
 // Update is called once per frame
 	void Update () {
 		if (!canMove()) return;
+
+		if (dead) 
+		{
+			if (Input.GetKeyDown(KeyCode.Escape)) GameController.instance.RestartScene();
+			else return;
+		}
 		
 		HandleInput();
 
@@ -299,6 +305,10 @@ public class PlayerBehaviour : MovingEntity
 			Death();
 			return;
 		}
+		else 
+		{
+			StartCoroutine(FlashSprite());
+		}
 		currentTime = Time.time;
 		vulnerable = true;
 		anim.SetLayerWeight(1, 1);
@@ -307,8 +317,21 @@ public class PlayerBehaviour : MovingEntity
 
 	public void Death()
 	{
+		StopAllCoroutines();
 		Instantiate(deathStars, transform.position, Quaternion.identity);
-		Destroy(gameObject);
+		dead = true;
+		sprite.enabled = false;
+		rb.isKinematic = true;
+		rb.velocity = Vector2.zero;
+	}
+
+	IEnumerator FlashSprite()
+	{
+		for (int i = 0; i < 6; i++)
+		{
+			sprite.enabled = !sprite.enabled;
+			yield return new WaitForSeconds(0.01f);
+		}
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)

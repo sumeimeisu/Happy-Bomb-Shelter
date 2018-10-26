@@ -74,7 +74,7 @@ MonoBehaviour:
   projectilePool: {fileID: 0}
   bullet: {fileID: 1864755616464916, guid: 205d38bdf3caf0344b9cb890844ef78d, type: 2}
   timer: 2
-  speed: 1
+  speed: 1.5
 --- !u!212 &212552409253027268
 SpriteRenderer:
   m_ObjectHideFlags: 1
