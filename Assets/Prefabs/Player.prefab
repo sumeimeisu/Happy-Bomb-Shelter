@@ -100,7 +100,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1214902856580954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 112, z: 0}
+  m_LocalPosition: {x: 49, y: 112, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4149875953661930}
@@ -184,8 +184,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityMax: {x: 300, y: 500}
   velocityIncrement: {x: 25, y: 35}
-  walkingSpeed: 38
-  walkingLDrag: 10
+  walkingSpeed: 65
+  floatingSpeed: 45
+  walkingLDrag: 0.5
   diveGravity: 30
   knockback: 0.3
   bulletCollider: {fileID: 61619809826030198}
@@ -214,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animLine: 0
-  splashOffset: 8
+  splashOffset: 10
   diveUnderwaterMaxSpeed: 35
   diveSlowdown: 15
   breakthroughSpeed: 150
