@@ -314,9 +314,11 @@ public class PlayerBehaviour : MovingEntity
 
 				rb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
 
+				/*
 				Debug.DrawRay(contact.point, collision.relativeVelocity.normalized * 20, Color.white, 10f);
 				Debug.DrawRay(contact.point, contact.normal.normalized * 20, Color.green, 10f);
 				Debug.DrawRay(contact.point, knockbackDirection.normalized * 20, Color.red, 10f);
+				*/
 			}
 
 			MovingEntity enemy = collision.gameObject.GetComponent<MovingEntity>();
