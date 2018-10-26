@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 50721644366728882}
   - component: {fileID: 114706902503497878}
   m_Layer: 0
-  m_Name: BalloonBot 1
+  m_Name: BalloonBot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,7 +110,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1065400825751166}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 129.7, y: 150.4, z: 0}
+  m_LocalPosition: {x: 116.8, y: 150.4, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 4730743644381088}
@@ -226,9 +226,9 @@ MonoBehaviour:
   DroneGunOutputTransforms: {fileID: 4814969628074844}
   collider1: {fileID: 61761284948593506}
   collider2: {fileID: 58724766390780900}
-  Speed: 20
+  Speed: 25
   distanceFromPlayer: 40
-  FireRate: 5
+  FireRate: 3.75
   deathFallingRate: 1.5
   hoverAboveWaterLevel: 50
   GrenadePrefab: {fileID: 1900189208470846, guid: fca942c0e512ccd4bbf72c8211595f88,
