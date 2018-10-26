@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet
   - ElectricField
+  - Water
   layers:
   - Default
   - TransparentFX

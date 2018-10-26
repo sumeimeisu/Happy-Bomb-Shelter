@@ -58,8 +58,7 @@ public class BalloonBot : MovingEntity
 
 	void Update()
 	{
-		if (!canMove())
-			return;
+		if (!canMove()) return;
 
 		if (!PlayerTransform) return;
 
@@ -73,7 +72,7 @@ public class BalloonBot : MovingEntity
 
 		if (transform.position.y < GameController.instance.waterline)
 		{
-			GameObject explosion = Instantiate(DeathExplosion, transform.position, Quaternion.identity);
+			Instantiate(DeathExplosion, transform.position, Quaternion.identity);
 			Destroy(gameObject);
 		}
 	}

@@ -7,6 +7,8 @@ public class MusicSync : MonoBehaviour
 	public AudioSource aboveWaterSong;
 	public AudioSource underWaterSong;
 
+	public bool mute = false;
+
 	bool underwater = false;
 	bool lastUnderwater;
 
@@ -19,6 +21,12 @@ public class MusicSync : MonoBehaviour
 
 	void Update()
 	{
+		if (mute)
+		{
+			underWaterSong.volume = 0;
+			aboveWaterSong.volume = 0;
+			return;
+		}
 		if (!playerTransform) return;
 
 		lastUnderwater = underwater;

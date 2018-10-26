@@ -471,11 +471,11 @@ MonoBehaviour:
   spinRate: 0.5
   knockback: 0.1
   attackCycle: 5
+  hoverAboveWaterLevel: 50
   node1: {fileID: 114327984402285596}
   node2: {fileID: 114549615740420562}
   lineStatic: {fileID: 198376583432188348}
-  smallExplosion: {fileID: 198794786596129136, guid: 7162fbdd7dc5e6a468691c5495159dae,
-    type: 2}
+  explosion: {fileID: 1552372733183016, guid: 7aca5f3d814635d43ab7dc9c7528f850, type: 2}
   lineStaticTrigger: {fileID: 61749824854382856}
 --- !u!198 &198096128353524884
 ParticleSystem:

@@ -5,10 +5,7 @@ using UnityEngine;
 public class LaserBot : MonoBehaviour 
 {
 	/* LaserBot Todo:
-	 *   > two nodes 
-	 *   > each node needs to move to a point 90 degrees on a circle from the closest point
-	 *   > attack regularly and activate particle system
-	 *   > when one dies, change behavior to rushing
+	 *   Don't follow player underwater
 	*/
 
 	#region Properties
@@ -18,6 +15,7 @@ public class LaserBot : MonoBehaviour
 	public float spinRate;
 	public float knockback;
 	public float attackCycle;
+	public float hoverAboveWaterLevel;
 
 	[Header("References")] [SerializeField]
 
@@ -49,9 +47,18 @@ public class LaserBot : MonoBehaviour
 		{
 			UpdateLineStaticPosition();
 
-			Vector3[] positions = FindTargetPosition();
-			node1.MoveToTarget(playerTransform.position + positions[0]);
-			node2.MoveToTarget(playerTransform.position + positions[1]);
+			if (playerTransform.position.y < GameController.instance.waterline + hoverAboveWaterLevel)
+			{
+				Vector3[] positions = FindTargetPosition();
+				node1.MoveToTarget(new Vector3(playerTransform.position.x + positions[0].x, GameController.instance.waterline + hoverAboveWaterLevel));
+				node2.MoveToTarget(new Vector3(playerTransform.position.x + positions[1].x, GameController.instance.waterline + hoverAboveWaterLevel));
+			}
+			else
+			{
+				Vector3[] positions = FindTargetPosition();
+				node1.MoveToTarget(playerTransform.position + positions[0]);
+				node2.MoveToTarget(playerTransform.position + positions[1]);
+			}
 		}
 		else if (node1)
 		{

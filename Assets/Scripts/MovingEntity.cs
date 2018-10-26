@@ -6,7 +6,7 @@ public abstract class MovingEntity : MonoBehaviour
 {
 	protected bool canMove()
 	{
-		return true; //!GameController.paused;
+		return true; // !GameController.instance.paused;
 	}
 
 	public virtual void divedOnto(Collision2D collision)

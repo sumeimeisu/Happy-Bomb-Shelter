@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrenadeScript : MonoBehaviour 
+public class GrenadeScript : MovingEntity 
 {
 	public Transform projectilePool;
 	public GameObject bullet;
@@ -21,6 +21,7 @@ public class GrenadeScript : MonoBehaviour
 	
 	void Update () 
 	{
+		if (!canMove()) return;
 		transform.position += new Vector3(velocity.x, velocity.y) * speed;
 	}
 

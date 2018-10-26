@@ -482,9 +482,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.32760942
+    x: 0.0063689053
     y: 0
-    width: 0.34478116
+    width: 0.9872622
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -1468,7 +1468,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &960194204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1500,8 +1500,8 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 1
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 256, y: 240}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_ScreenMatchMode: 1
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

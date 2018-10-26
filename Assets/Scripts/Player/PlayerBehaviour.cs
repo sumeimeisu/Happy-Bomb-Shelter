@@ -46,8 +46,6 @@ public class PlayerBehaviour : MovingEntity
 
 	private bool dead = false;
 
-	private bool hasCollided = false;
-
 	private float defaultGravity;
 
 	private float defaultLDrag;
@@ -244,7 +242,8 @@ public class PlayerBehaviour : MovingEntity
 
 // Update is called once per frame
 	void Update () {
-		//Debug.Log(rb.velocity + " " + IsGrounded());
+		if (!canMove()) return;
+		
 		HandleInput();
 
 		UpdateMovement();
@@ -348,6 +347,14 @@ public class PlayerBehaviour : MovingEntity
 		else if (collision.CompareTag("ElectricField"))
 		{
 			TakeDamage(2);
+		}
+		else if (collision.CompareTag("Water"))
+		{
+			WaterController water = collision.gameObject.GetComponent<WaterController>();
+			if (water)
+			{
+				if (water.electrified) TakeDamage(2);
+			}
 		}
 	}
 }

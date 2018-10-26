@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour 
+public class BulletScript : MovingEntity 
 {
 	public float bulletSpeed;
 	[NonSerialized] public Vector2 velocity;
@@ -16,6 +16,7 @@ public class BulletScript : MonoBehaviour
 
 	void Update () 
 	{
+		if (!canMove()) return;
 		transform.position += new Vector3(velocity.x, velocity.y, 0) * bulletSpeed;
 	}
 

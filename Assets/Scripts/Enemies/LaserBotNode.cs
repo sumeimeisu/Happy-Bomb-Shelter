@@ -21,7 +21,7 @@ public class LaserBotNode : MovingEntity
 	{
 		if (transform.position.y < GameController.instance.waterline)
 		{
-			GameObject explosion = Instantiate(parent.explosion, transform.position, Quaternion.identity);
+			Instantiate(parent.explosion, transform.position, Quaternion.identity);
 			parent.StopAllCoroutines();
 			Destroy(gameObject);
 		}
@@ -29,6 +29,8 @@ public class LaserBotNode : MovingEntity
 
 	public void MoveToTarget(Vector3 target)
 	{
+		if (!canMove()) return;
+
 		if ((transform.position - target).magnitude < 1) return;
 
 		Vector3 direction = target - transform.position;
