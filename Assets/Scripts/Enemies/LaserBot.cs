@@ -11,11 +11,6 @@ public class LaserBot : MonoBehaviour
 	 *   > when one dies, change behavior to rushing
 	*/
 
-	public enum LaserState
-	{
-
-	}
-
 	#region Properties
 	[Header("Movement")]
 	public float speed;
@@ -63,6 +58,7 @@ public class LaserBot : MonoBehaviour
 			if (onlyOnce)
 			{
 				StartCoroutine(SingleAttackPattern(node1));
+				Destroy(lineStatic.gameObject);
 				onlyOnce = false;
 			}
 		}
@@ -72,6 +68,7 @@ public class LaserBot : MonoBehaviour
 			if (onlyOnce)
 			{
 				StartCoroutine(SingleAttackPattern(node2));
+				Destroy(lineStatic.gameObject);
 				onlyOnce = false;
 			}
 		}
@@ -101,6 +98,7 @@ public class LaserBot : MonoBehaviour
 			node1.circleStatic.Play();
 			node2.circleStatic.Play();
 			lineStatic.Play();
+			
 			yield return new WaitForSeconds(attackCycle);
 			node1.circleStatic.Stop();
 			node2.circleStatic.Stop();
