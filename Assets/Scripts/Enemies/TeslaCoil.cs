@@ -8,9 +8,13 @@ public class TeslaCoil : MonoBehaviour
 	public ParticleSystem electrifyWater;
 	bool active = true;
 
+	Animator anim;
+
 	GameObject[] water;
+
 	private void Start()
 	{
+		anim = GetComponent<Animator>();
 		water = GameObject.FindGameObjectsWithTag("Water");
 		foreach (GameObject waterPieces in water)
 		{
@@ -20,6 +24,7 @@ public class TeslaCoil : MonoBehaviour
 
 	public void CheckActiveState()
 	{
+		anim.SetTrigger("attacked");
 		active = true;
 		foreach (TeslaCoilButton tButton in buttons)
 		{
