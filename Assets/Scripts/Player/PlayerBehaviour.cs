@@ -31,6 +31,8 @@ public class PlayerBehaviour : MovingEntity
 
 	[SerializeField] private float knockback;
 
+	[SerializeField] private float electricWaterKnockback;
+
 	[Header("References")] [SerializeField]
 	private BoxCollider2D bulletCollider;
 
@@ -60,6 +62,9 @@ public class PlayerBehaviour : MovingEntity
 	[SerializeField] ParticleSystem fallingFeathers;
 
 	[SerializeField] ParticleSystem deathStars;
+
+	[SerializeField] ParticleSystem staticParticles1;
+	[SerializeField] ParticleSystem staticParticles2;
 
 	[SerializeField] DashAbility dash;
 
@@ -336,16 +341,27 @@ public class PlayerBehaviour : MovingEntity
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
+		if (collision.gameObject.CompareTag("Water"))
+		{
+			WaterController water = collision.gameObject.GetComponent<WaterController>();
+			if (water)
+			{
+				if (water.electrified)
+				{
+					Vector2 knockbackDirection = Vector2.up * electricWaterKnockback;
+					rb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
+
+					staticParticles1.Play();
+					staticParticles2.Play();
+					TakeDamage(1);
+					return;
+				}
+			}
+		}
+
 		if (state == playerState.Diving)
 		{
 			ContactPoint2D[] contacts = collision.contacts;
-			/*
-			Debug.DrawRay(contact.point, collision.relativeVelocity.normalized * 20, Color.white, 10f);
-			Debug.DrawRay(contact.point, contact.normal.normalized * 20, Color.green, 10f);
-			Debug.DrawRay(contact.point, knockbackDirection.normalized * 20, Color.red, 10f);
-			*/
-
-			//Debug.Log(contacts[0].collider.gameObject);
 
 			MovingEntity enemy = collision.gameObject.GetComponent<MovingEntity>();
 			if (enemy)
@@ -370,14 +386,6 @@ public class PlayerBehaviour : MovingEntity
 		else if (collision.CompareTag("ElectricField"))
 		{
 			TakeDamage(2);
-		}
-		else if (collision.CompareTag("Water"))
-		{
-			WaterController water = collision.gameObject.GetComponent<WaterController>();
-			if (water)
-			{
-				if (water.electrified) TakeDamage(2);
-			}
-		}
+		}		
 	}
 }
