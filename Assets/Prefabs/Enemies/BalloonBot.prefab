@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 95571025455513188}
   - component: {fileID: 50721644366728882}
   - component: {fileID: 114706902503497878}
+  - component: {fileID: 61556347922446670}
   m_Layer: 0
   m_Name: BalloonBot
   m_TagString: Untagged
@@ -110,7 +111,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1065400825751166}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -70, y: 179, z: 0}
+  m_LocalPosition: {x: 190.01527, y: 168.8479, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children:
   - {fileID: 4730743644381088}
@@ -167,6 +168,31 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 6}
   serializedVersion: 2
   m_Radius: 6
+--- !u!61 &61556347922446670
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1065400825751166}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.8664932, y: -5.9572678}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 28, y: 28}
+    newSize: {x: 28, y: 28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 11.536362, y: 12.619431}
+  m_EdgeRadius: 0
 --- !u!61 &61761284948593506
 BoxCollider2D:
   m_ObjectHideFlags: 1

@@ -250,7 +250,7 @@ MonoBehaviour:
   floatingSpeed: 45
   walkingLDrag: 0.5
   diveGravity: 30
-  knockback: 0.3
+  knockback: 0.5
   electricWaterKnockback: 400
   bulletCollider: {fileID: 61619809826030198}
   vulnerableTime: 5
@@ -279,6 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1844d077cf0ccd546acbbf865438a6d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waterLine: 0
   animLine: 0
   splashOffset: 10
   diveUnderwaterMaxSpeed: 35
