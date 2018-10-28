@@ -57,6 +57,7 @@ public class PlayerBehaviour : MovingEntity
 	private int health = 2;
 	private bool vulnerable = false;
 	public float vulnerableTime;
+
 	private float currentTime;
 
 	[SerializeField] ParticleSystem fallingFeathers;
@@ -248,12 +249,6 @@ public class PlayerBehaviour : MovingEntity
 // Update is called once per frame
 	void Update () {
 		if (!canMove()) return;
-
-		if (dead) 
-		{
-			if (Input.GetKeyDown(KeyCode.Escape)) GameController.instance.RestartScene();
-			else return;
-		}
 		
 		HandleInput();
 
@@ -324,10 +319,7 @@ public class PlayerBehaviour : MovingEntity
 	{
 		StopAllCoroutines();
 		Instantiate(deathStars, transform.position, Quaternion.identity);
-		dead = true;
-		sprite.enabled = false;
-		rb.isKinematic = true;
-		rb.velocity = Vector2.zero;
+		Destroy(gameObject);
 	}
 
 	IEnumerator FlashSprite()

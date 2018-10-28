@@ -29,6 +29,8 @@ public class BossArm : MonoBehaviour
 
 	private void Update()
 	{
+		if (!playerTransform) return;
+
 		if (canFlip && uncovered) sr.flipX = facingRight = playerTransform.position.x > transform.position.x;
 		aimingAngle = Vector3.Angle(playerTransform.position - (transform.position), Vector3.right);
 

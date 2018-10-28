@@ -6,13 +6,15 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
 	public static GameController instance = null;
+	public Transform respawnPoint;
 
-	[HideInInspector]
-	public float waterline = 0.0f;
+	public float[] sceneWaterLines;
+	public float waterline;
 	public int score = 0;
 	public int highScore = 0;
 
 	public int stage = 1;
+	public int lives = 3;
 
 	public GameObject player;
 
@@ -28,7 +30,8 @@ public class GameController : MonoBehaviour
 
 		DontDestroyOnLoad(gameObject);
 
-		player = GameObject.FindGameObjectWithTag("Player");
+		//player = GameObject.FindGameObjectWithTag("Player
+		player = Instantiate(player, respawnPoint.position, Quaternion.identity);
 	}
 
 	public void LoadScene(int scene)
@@ -41,6 +44,11 @@ public class GameController : MonoBehaviour
 		SceneManager.LoadScene(0);
 	}
 
+	void RespawnPlayer()
+	{
+		Instantiate(player, transform.position, Quaternion.identity);
+	}
+
 	IEnumerator WaitForLevelLoad(int scene)
 	{
 		asyncLoadLevel = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Single);
@@ -49,7 +57,9 @@ public class GameController : MonoBehaviour
 			yield return null;
 		}
 
+		waterline = sceneWaterLines[scene];
 		player = GameObject.FindGameObjectWithTag("Player");
+
 		Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
 
 		if (scene == 0)
@@ -57,8 +67,6 @@ public class GameController : MonoBehaviour
 			player.transform.position = new Vector3(253, 65);
 			playerRb.simulated = false;
 		}
-		
-		waterline = player.GetComponent<WaterEffect>().waterLine;
 
 		if (scene == 0)
 		{

@@ -26,7 +26,7 @@ public class WaterEffect : MonoBehaviour
 	private void Start()
 	{
 		player = GetComponent<PlayerBehaviour>();
-		//waterLine = GameController.instance.waterline;
+		waterLine = GameController.instance.waterline;
 
 		underwater = lastUnderwater = transform.position.y <= waterLine;
 	}
