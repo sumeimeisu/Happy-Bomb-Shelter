@@ -5,17 +5,36 @@ using UnityEngine;
 public class WaterController : MonoBehaviour 
 {
 	Animator anim;
+	BoxCollider2D col;
 
-	public bool electrified = false;
+	public bool electrified = true;
+	bool lastElectrified = true;
 
 	void Start () 
 	{
 		anim = GetComponent<Animator>();
+		col = GetComponent<BoxCollider2D>();
+
+		anim.SetLayerWeight(1, 1);
 	}
 	
 	void Update () 
 	{
+		if (electrified != lastElectrified) DeStatic();
+		lastElectrified = electrified;
+
+		/*
 		if (electrified) anim.SetLayerWeight(1, 1);
-		else anim.SetLayerWeight(1, 0);
+		else
+		{
+			anim.SetLayerWeight(1, 0);
+		}
+		*/
+	}
+
+	void DeStatic()
+	{
+		anim.SetLayerWeight(1, 0);
+		col.enabled = false;
 	}
 }

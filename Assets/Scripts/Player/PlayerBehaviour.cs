@@ -387,5 +387,9 @@ public class PlayerBehaviour : MovingEntity
 		{
 			TakeDamage(2);
 		}		
+		else if (collision.CompareTag("BossEntrance"))
+		{
+			// load inside of boss
+		}
 	}
 }
