@@ -1,14 +1,15 @@
 fileFormatVersion: 2
-guid: 659b8b7d48df14044ba8f23e6f3123a5
+guid: e30ac939d9fcc4d81b26978fea8dc534
 TextureImporter:
   fileIDToRecycleName:
-    21300000: teslacoil_0
-    21300002: teslacoil_1
-    21300004: teslacoil_2
-    21300006: teslacoil_3
-    21300008: teslacoil_4
-    21300010: teslacoil_5
-    21300012: teslacoil_6
+    21300000: bossbot_shouldercannon_0
+    21300002: bossbot_shouldercannon_1
+    21300004: bossbot_shouldercannon_2
+    21300006: bossbot_shouldercannon_3
+    21300008: bossbot_shouldercannon_4
+    21300010: bossbot_shouldercannon_5
+    21300012: bossbot_shouldercannon_6
+    21300014: bossbot_shouldercannon_7
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -91,13 +92,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: teslacoil_0
+      name: bossbot_shouldercannon_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 17
-        width: 23
-        height: 17
+        y: 65
+        width: 70
+        height: 65
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -105,19 +106,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5947bfe5e18204a439d5e814df44ef95
+      spriteID: 2a50f55905ace4a24a0c77b7251f4178
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: teslacoil_1
+      name: bossbot_shouldercannon_1
       rect:
         serializedVersion: 2
-        x: 23
-        y: 17
-        width: 23
-        height: 17
+        x: 70
+        y: 65
+        width: 70
+        height: 65
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -125,39 +126,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86d44001be8ab4a288c13d7a12b1ac10
+      spriteID: 78cb8d06dc8d94b6c8c3dbedc396dd0c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: teslacoil_2
-      rect:
-        serializedVersion: 2
-        x: 46
-        y: 17
-        width: 23
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fb26622fe98ff406fa8b2235de778938
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: teslacoil_3
+      name: bossbot_shouldercannon_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 23
-        height: 17
+        width: 70
+        height: 65
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,19 +146,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90fdbf14fca984a7f9c185bb46b74707
+      spriteID: 26c2dff589f8045508f43af44cf238d1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: teslacoil_4
+      name: bossbot_shouldercannon_3
       rect:
         serializedVersion: 2
-        x: 23
+        x: 70
         y: 0
-        width: 23
-        height: 17
+        width: 70
+        height: 65
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,19 +166,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55528e3affacd421ea5b7573a324de2c
+      spriteID: a24b537d96bbf410bacda517f02b778e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: teslacoil_5
+      name: bossbot_shouldercannon_4
       rect:
         serializedVersion: 2
-        x: 46
+        x: 140
         y: 0
-        width: 23
-        height: 17
+        width: 70
+        height: 65
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,19 +186,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 736b9221ce3054f82bb16a21dac6c7a9
+      spriteID: dde61a524a49e4bb1a0c9e18f5125707
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: teslacoil_6
+      name: bossbot_shouldercannon_5
       rect:
         serializedVersion: 2
-        x: 69
+        x: 210
         y: 0
-        width: 23
-        height: 17
+        width: 70
+        height: 65
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -225,7 +206,47 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 571cd5efb9e174a92a28f1759f46fa6e
+      spriteID: f26abe8eb274848568eb4be3424ce788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bossbot_shouldercannon_6
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 0
+        width: 70
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 519b70e3fe24c4af389789debb51e9de
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bossbot_shouldercannon_7
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 0
+        width: 70
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5156859dde6d34150b3b0c0e609970f5
       vertices: []
       indices: 
       edges: []
@@ -233,7 +254,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0143e831e7a03440d811f0dd016f807a
+    spriteID: 1a12ccc8fb5374b61ac595edf1c47a91
     vertices: []
     indices: 
     edges: []
