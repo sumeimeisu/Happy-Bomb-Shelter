@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class BossBot : MonoBehaviour 
 {
-	public int stage;
 	public BossArm leftArm;
 	public BossArm rightArm;
 
 	void Start () 
 	{
-	
-	}
-	
-	void Update () 
-	{
-		
+		if (GameController.instance.stage == 2)
+		{
+			Debug.Log("onlyOne");
+			leftArm.StartAttacking();
+		}
+		else if (GameController.instance.stage == 3)
+		{
+			Debug.Log("both");
+			leftArm.StartAttacking();
+			rightArm.StartAttacking();
+		}
 	}
 }

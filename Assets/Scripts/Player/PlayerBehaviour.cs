@@ -389,7 +389,7 @@ public class PlayerBehaviour : MovingEntity
 		}		
 		else if (collision.CompareTag("BossEntrance"))
 		{
-			// load inside of boss
+			GameController.instance.LoadScene(1);
 		}
 	}
 }

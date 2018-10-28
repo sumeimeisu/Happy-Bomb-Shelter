@@ -245,6 +245,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waterline: 8
+  score: 0
+  highScore: 0
+  stage: 1
 --- !u!114 &114968994764183754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -258,3 +261,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aboveWaterSong: {fileID: 82346649291929242}
   underWaterSong: {fileID: 82492794138829332}
+  mute: 0

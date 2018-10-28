@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossArm : MonoBehaviour 
 {
-	public bool uncovered;
+	public bool uncovered = false;
 
 	public GameObject bulletPrefab;
 	public Transform bulletOutput;
@@ -25,22 +25,23 @@ public class BossArm : MonoBehaviour
 
 		sr = GetComponent<SpriteRenderer>();
 		anim = GetComponent<Animator>();
-
-		if (uncovered)
-		{
-			anim.SetTrigger("Uncover");
-			StartCoroutine(Attack());
-		}
 	}
 
 	private void Update()
 	{
-		if (canFlip) sr.flipX = facingRight = playerTransform.position.x > transform.position.x;
+		if (canFlip && uncovered) sr.flipX = facingRight = playerTransform.position.x > transform.position.x;
 		aimingAngle = Vector3.Angle(playerTransform.position - (transform.position), Vector3.right);
 
 		spriteAngle = aimingAngle;
 		if (aimingAngle > 90) spriteAngle = aimingAngle - 2 * (aimingAngle - 90);
 		anim.SetFloat("AimDirection", spriteAngle);
+	}
+
+	public void StartAttacking()
+	{
+		uncovered = true;
+		anim.SetTrigger("Uncover");
+		StartCoroutine(Attack());
 	}
 
 	IEnumerator Attack()

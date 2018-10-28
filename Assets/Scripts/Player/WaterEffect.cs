@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class WaterEffect : MonoBehaviour 
 {
-	[NonSerialized]
 	public float waterLine;
 	public float animLine;
 	public float splashOffset;
@@ -27,7 +26,9 @@ public class WaterEffect : MonoBehaviour
 	private void Start()
 	{
 		player = GetComponent<PlayerBehaviour>();
-		waterLine = GameController.instance.waterline;
+		//waterLine = GameController.instance.waterline;
+
+		underwater = lastUnderwater = transform.position.y <= waterLine;
 	}
 
 	void Update () 
@@ -44,7 +45,7 @@ public class WaterEffect : MonoBehaviour
 			if (player.state != PlayerBehaviour.playerState.Diving && player.rb.velocity.magnitude < breakthroughSpeed) player.state = PlayerBehaviour.playerState.Floating;
 			if (player.state == PlayerBehaviour.playerState.Diving)	Instantiate(splash, new Vector2(transform.position.x, waterLine + splashOffset), Quaternion.identity);
 
-			if (underwater) smallBubbles.Play();
+			if (transform.position.y <= animLine) smallBubbles.Play();
 			else smallBubbles.Stop();
 		}
 	}

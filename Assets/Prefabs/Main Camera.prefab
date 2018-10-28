@@ -1,0 +1,290 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1037466870220128}
+  m_IsPrefabAsset: 1
+--- !u!1 &1037466870220128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4055874651492702}
+  - component: {fileID: 20443348011901540}
+  - component: {fileID: 81688516947904010}
+  - component: {fileID: 114679475438739226}
+  - component: {fileID: 114135632154434126}
+  - component: {fileID: 114891922019417902}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4055874651492702
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1037466870220128}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 45.6, y: 190, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &20443348011901540
+Camera:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1037466870220128}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_projectionMatrixMode: 1
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0.03125003
+    width: 1
+    height: 0.93749994
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 112
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 0
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 0
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &81688516947904010
+AudioListener:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1037466870220128}
+  m_Enabled: 1
+--- !u!114 &114135632154434126
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1037466870220128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9864ecbe305d72c49bdc87f262c5bdf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetWidth: 256
+  targetHeight: 240
+  type: 0
+--- !u!114 &114679475438739226
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1037466870220128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88c9cfc209931e4f98c9f0a33912af3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  center: {x: 145, y: 28}
+  dimensions: {x: 1328, y: 854}
+--- !u!114 &114891922019417902
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1037466870220128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ba5113e7208c4316acb1028a08587a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader1: {fileID: 4800000, guid: e5b137a48bf2c4c668927fd89b6ccbcd, type: 3}
+  shader2: {fileID: 4800000, guid: e2075d3cd3deb45c78fdc81aab250ef7, type: 3}
+  shader3: {fileID: 4800000, guid: de4e63e4455b14b8e8c57542f8089707, type: 3}
+  shader4: {fileID: 4800000, guid: 65c19848f188f4192a05ff1eece78fee, type: 3}
+  shader_clear: {fileID: 4800000, guid: 3c6a64923374747f7b15711533b5971a, type: 3}
+  shader_tape: {fileID: 4800000, guid: caea6b3daf52a4416949b7b9c0146d77, type: 3}
+  mat1: {fileID: 0}
+  mat2: {fileID: 0}
+  mat3: {fileID: 0}
+  mat4: {fileID: 0}
+  mat_clear: {fileID: 0}
+  mat_tape: {fileID: 0}
+  g_showCRT: 1
+  g_showNoise: 1
+  g_showJitter: 1
+  g_showSignal: 1
+  g_showFeedback: 1
+  g_showExtra: 0
+  g_showBypass: 0
+  bleedOn: 1
+  crtMode: 0
+  crtLinesMode: 0
+  screenLinesNum: 0
+  bleedAmount: 1
+  bleedDebugOn: 0
+  bleedCurveY:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: -1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  bleedCurveI:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0
+      outSlope: -0.5
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.5
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  bleedCurveQ:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 0
+      outSlope: -0.5
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.5
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  bleedLength: 24
+  bleedCurveEditModeOn: 0
+  bleedCurveIQSyncOn: 1
+  fisheyeOn: 1
+  fisheyeBend: 1.4
+  fisheyeType: 0
+  fisheyeSize: 1.2
+  cutoffX: 0
+  cutoffY: 0
+  cutoffFadeX: 0
+  cutoffFadeY: 0
+  vignetteOn: 0
+  vignetteAmount: 1
+  vignetteSpeed: 1
+  noiseLinesMode: 1
+  noiseLinesNum: 240
+  noiseQuantizeX: 0
+  filmgrainOn: 0
+  filmGrainAmount: 0.016
+  signalNoiseOn: 1
+  signalNoiseAmount: 0.05
+  signalNoisePower: 1
+  tapeNoiseOn: 0
+  tapeNoiseTH: 0.63
+  tapeNoiseAmount: 1
+  tapeNoiseSpeed: 1
+  lineNoiseOn: 0
+  lineNoiseAmount: 1
+  lineNoiseSpeed: 5
+  scanLinesOn: 0
+  scanLineWidth: 10
+  linesFloatOn: 0
+  linesFloatSpeed: 1
+  stretchOn: 1
+  twitchHOn: 0
+  twitchHFreq: 1
+  twitchVOn: 0
+  twitchVFreq: 1
+  jitterHOn: 0
+  jitterHAmount: 0.5
+  jitterVOn: 0
+  jitterVAmount: 1
+  jitterVSpeed: 1
+  signalTweakOn: 1
+  signalAdjustY: 0.19
+  signalAdjustI: 0.025
+  signalAdjustQ: 0.041
+  signalShiftY: 0.9
+  signalShiftI: 0.81
+  signalShiftQ: 0.77
+  gammaCorection: 1.45
+  feedbackOn: 0
+  feedbackMode: 0
+  feedbackThresh: 0.1
+  feedbackAmount: 2
+  feedbackFade: 0.82
+  feedbackColor: {r: 1, g: 0.5, b: 0, a: 1}
+  feedbackDebugOn: 0
+  independentTimeOn: 0
+  bypassTex: {fileID: 0}
+  spriteTex: {fileID: 0}
