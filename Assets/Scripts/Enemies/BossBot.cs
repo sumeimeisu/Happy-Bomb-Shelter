@@ -7,18 +7,20 @@ public class BossBot : MonoBehaviour
 	public BossArm leftArm;
 	public BossArm rightArm;
 
+	public GameObject explosion;
+	public bool alive = true;
+
 	void Start () 
 	{
-		if (GameController.instance.stage == 2)
+		if (!alive) StartCoroutine(Die());
+	}
+
+	IEnumerator Die()
+	{
+		for (int i = 0; i < 10; i++)
 		{
-			Debug.Log("onlyOne");
-			leftArm.StartAttacking();
-		}
-		else if (GameController.instance.stage == 3)
-		{
-			Debug.Log("both");
-			leftArm.StartAttacking();
-			rightArm.StartAttacking();
+			Instantiate(explosion, transform.position + new Vector3(Random.Range(-85f, 85f), Random.Range(-59.5f, 59.5f)), Quaternion.identity);
+			yield return new WaitForSeconds(0.3f);
 		}
 	}
 }

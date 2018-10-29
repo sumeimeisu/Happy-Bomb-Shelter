@@ -244,10 +244,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f4094446d22b1469b0fae31b57dbbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnPoint: {fileID: 0}
+  sceneWaterLines:
+  - -71
+  - 8
+  sceneAnimLines:
+  - -81
+  - 0
   waterline: 8
+  animline: 0
   score: 0
-  highScore: 0
+  highScore: 1234567
   stage: 1
+  lives: 3
+  playerPrefab: {fileID: 1214902856580954, guid: e78e5088ab21900489dc2668436b1624,
+    type: 2}
+  player: {fileID: 1214902856580954, guid: e78e5088ab21900489dc2668436b1624, type: 2}
 --- !u!114 &114968994764183754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -261,4 +273,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aboveWaterSong: {fileID: 82346649291929242}
   underWaterSong: {fileID: 82492794138829332}
-  mute: 0
+  mute: 1

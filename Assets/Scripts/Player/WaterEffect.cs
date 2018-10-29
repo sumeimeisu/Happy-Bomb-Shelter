@@ -27,6 +27,9 @@ public class WaterEffect : MonoBehaviour
 	{
 		player = GetComponent<PlayerBehaviour>();
 		waterLine = GameController.instance.waterline;
+		animLine = GameController.instance.animline;
+
+		//	Debug.Log("WE : " + waterLine);
 
 		underwater = lastUnderwater = transform.position.y <= waterLine;
 	}
@@ -43,7 +46,12 @@ public class WaterEffect : MonoBehaviour
 		if (lastUnderwater != underwater)
 		{
 			if (player.state != PlayerBehaviour.playerState.Diving && player.rb.velocity.magnitude < breakthroughSpeed) player.state = PlayerBehaviour.playerState.Floating;
-			if (player.state == PlayerBehaviour.playerState.Diving)	Instantiate(splash, new Vector2(transform.position.x, waterLine + splashOffset), Quaternion.identity);
+			if (player.state == PlayerBehaviour.playerState.Diving)
+			{
+				Instantiate(splash, new Vector2(transform.position.x, waterLine + splashOffset), Quaternion.identity);
+				player.audioS.clip = player.splash;
+				player.audioS.Play();
+			}
 
 			if (transform.position.y <= animLine) smallBubbles.Play();
 			else smallBubbles.Stop();

@@ -15,7 +15,7 @@ public class FollowPlayer : MonoBehaviour
 	{
 		player = GameObject.FindGameObjectWithTag("Player").transform;
 
-		offset = transform.position - player.transform.position;
+		offset = GameController.instance.camOffset;
 		cam = Camera.main;
 	}
 
@@ -44,5 +44,10 @@ public class FollowPlayer : MonoBehaviour
 	{
 		Gizmos.color = Color.green;
 		Gizmos.DrawWireCube(center, dimensions);
+	}
+
+	public void ReassignPlayer()
+	{
+		player = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 }

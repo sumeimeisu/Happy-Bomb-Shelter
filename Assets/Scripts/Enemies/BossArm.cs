@@ -25,11 +25,17 @@ public class BossArm : MonoBehaviour
 
 		sr = GetComponent<SpriteRenderer>();
 		anim = GetComponent<Animator>();
+
+		if (uncovered) StartAttacking();
 	}
 
 	private void Update()
 	{
-		if (!playerTransform) return;
+		if (!playerTransform) 
+		{
+			if (GameObject.FindWithTag("Player")) playerTransform = GameObject.FindWithTag("Player").transform;
+			else return;
+		}
 
 		if (canFlip && uncovered) sr.flipX = facingRight = playerTransform.position.x > transform.position.x;
 		aimingAngle = Vector3.Angle(playerTransform.position - (transform.position), Vector3.right);
@@ -41,7 +47,6 @@ public class BossArm : MonoBehaviour
 
 	public void StartAttacking()
 	{
-		uncovered = true;
 		anim.SetTrigger("Uncover");
 		StartCoroutine(Attack());
 	}

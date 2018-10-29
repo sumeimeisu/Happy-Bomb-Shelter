@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class LaserBot : MonoBehaviour 
 {
-	/* LaserBot Todo:
-	 *   Don't follow player underwater
-	*/
-
 	#region Properties
 	[Header("Movement")] [SerializeField]
 	public float speed;
@@ -41,7 +37,11 @@ public class LaserBot : MonoBehaviour
 
 	private void Update()
 	{
-		if (!playerTransform) return; 
+		if (!playerTransform)
+		{
+			if (GameObject.FindWithTag("Player")) playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+			else return;
+		}
 
 		if (node1 && node2)
 		{

@@ -17,9 +17,12 @@ public class BalloonBot : MovingEntity
 	private BoxCollider2D collider1;
 	[SerializeField]
 	private CircleCollider2D collider2;
+	[SerializeField]
+	private AudioClip balloonPop;
 
 	private Transform PlayerTransform;
 	private Rigidbody2D rb;
+	private AudioSource audioS;
 	#endregion
 
 	[Header("Properties")]
@@ -52,6 +55,7 @@ public class BalloonBot : MovingEntity
 		rb = GetComponent<Rigidbody2D>();
 		PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 		DroneAnimator = GetComponent<Animator>();
+		audioS = GetComponent<AudioSource>();
 
 		StartCoroutine(ShootLoop());
 	}
@@ -60,7 +64,11 @@ public class BalloonBot : MovingEntity
 	{
 		if (!canMove()) return;
 
-		if (!PlayerTransform) return;
+		if (!PlayerTransform) 
+		{
+			if (GameObject.FindWithTag("Player")) PlayerTransform = GameObject.FindWithTag("Player").transform;
+			else return;
+		}
 
 		if (health > 0) MoveAbovePlayer();
 		else
@@ -79,6 +87,8 @@ public class BalloonBot : MovingEntity
 
 	public void TakeDamage()
 	{
+		audioS.clip = balloonPop;
+		audioS.Play();
 		health--;
 		if (health > 0)
 		{

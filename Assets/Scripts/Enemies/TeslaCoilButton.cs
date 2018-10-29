@@ -10,14 +10,21 @@ public class TeslaCoilButton : MovingEntity
 	BoxCollider2D col;
 	SpriteRenderer sr;
 
+	public AudioClip buttonPressSound;
+	AudioSource audioS;
+
 	void Start () 
 	{
 		col = GetComponent<BoxCollider2D>();
 		sr = GetComponent<SpriteRenderer>();
+		audioS = GetComponent<AudioSource>();
 	}
 
 	public override void divedOnto(Collision2D collision)
 	{
+		audioS.clip = buttonPressSound;
+		audioS.Play();
+
 		sr.sprite = pressedSprite;
 		col.enabled = false;
 		pressed = true;

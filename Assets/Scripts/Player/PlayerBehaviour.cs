@@ -80,6 +80,16 @@ public class PlayerBehaviour : MovingEntity
 	[SerializeField] public string inputDive = "Dive";
 	[SerializeField] public string inputDash = "Dash";
 
+	[Header("AudioClips")]
+	public AudioClip death;
+	public AudioClip flap;
+	public AudioClip hurt;
+	public AudioClip shock;
+	public AudioClip splash;
+
+	[HideInInspector]
+	public AudioSource audioS;
+
 	public playerState state;
 
 	#endregion
@@ -92,7 +102,7 @@ public class PlayerBehaviour : MovingEntity
 		defaultGravity = rb.gravityScale;
 		defaultLDrag = rb.drag;
 		sprite = GetComponent<SpriteRenderer>();
-
+		audioS = GetComponent<AudioSource>();
 		//dash.Initialize(this);
 	}
 
@@ -184,6 +194,8 @@ public class PlayerBehaviour : MovingEntity
 			case playerState.Flying:
 				if (Input.GetButtonDown(inputFlap))
 				{
+					audioS.clip = flap;
+					audioS.Play();
 					lastFlap = Time.time;
 					rb.velocity += new Vector2(velocityIncrement.x * Input.GetAxis(inputHorizontal),
 												(CheckWater(waterEffect.animUnderwater)) ? -velocityIncrement.y : velocityIncrement.y);
@@ -299,6 +311,8 @@ public class PlayerBehaviour : MovingEntity
 
 	public void TakeDamage(int damage)
 	{
+		audioS.clip = hurt;
+		audioS.Play();
 		health -= damage;
 		if (health <= 0)
 		{
@@ -317,9 +331,15 @@ public class PlayerBehaviour : MovingEntity
 
 	public void Death()
 	{
+		audioS.clip = death;
+		audioS.Play();
 		StopAllCoroutines();
 		Instantiate(deathStars, transform.position, Quaternion.identity);
-		Destroy(gameObject);
+		GameController.instance.StartCoroutine(GameController.instance.RespawnPlayer());
+
+		sprite.enabled = false;
+		rb.simulated = false;
+		Destroy(gameObject, 2f);
 	}
 
 	IEnumerator FlashSprite()
@@ -340,6 +360,8 @@ public class PlayerBehaviour : MovingEntity
 			{
 				if (water.electrified)
 				{
+					audioS.clip = shock;
+					audioS.Play();
 					Vector2 knockbackDirection = Vector2.up * electricWaterKnockback;
 					rb.AddForce(knockbackDirection * knockback, ForceMode2D.Impulse);
 
@@ -377,11 +399,11 @@ public class PlayerBehaviour : MovingEntity
 		}
 		else if (collision.CompareTag("ElectricField"))
 		{
-			TakeDamage(2);
+			TakeDamage(1);
 		}		
 		else if (collision.CompareTag("BossEntrance"))
 		{
-			GameController.instance.LoadScene(1);
+			GameController.instance.LoadScene(0);
 		}
 	}
 }

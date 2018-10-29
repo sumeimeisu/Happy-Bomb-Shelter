@@ -9,6 +9,7 @@ TagManager:
   - Water
   - BossEntrance
   - SpawnPoint
+  - GameOverText
   layers:
   - Default
   - TransparentFX

@@ -8,6 +8,7 @@ public class MusicSync : MonoBehaviour
 	public AudioSource underWaterSong;
 
 	public bool mute = false;
+	public bool trackingPlayer = true;
 
 	bool underwater = false;
 	bool lastUnderwater;
@@ -16,7 +17,7 @@ public class MusicSync : MonoBehaviour
 
 	private void Start()
 	{
-		playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+		if (trackingPlayer) playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 
 	void Update()
