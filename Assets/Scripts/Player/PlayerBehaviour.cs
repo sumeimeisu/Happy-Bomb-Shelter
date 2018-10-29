@@ -358,14 +358,14 @@ public class PlayerBehaviour : MovingEntity
 	{
 		int currLives = GameController.instance.lives;
 
-		for (int i = 0; i < currLives - 1; i++)
+		for (int i = 0; i < currLives; i++)
 		{
 			livesImages[i].SetActive(true);
 		}
 
 		yield return new WaitForSeconds(3f);
 
-		for (int i = 0; i < currLives - 1; i++)
+		for (int i = 0; i < currLives; i++)
 		{
 			livesImages[i].SetActive(false);
 		}

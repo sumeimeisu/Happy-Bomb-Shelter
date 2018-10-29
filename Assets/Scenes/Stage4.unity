@@ -4261,12 +4261,12 @@ Prefab:
     - target: {fileID: 20443348011901540, guid: 8e505584c99e8424499357a4435f1535,
         type: 2}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0
+      value: 0.1407615
       objectReference: {fileID: 0}
     - target: {fileID: 20443348011901540, guid: 8e505584c99e8424499357a4435f1535,
         type: 2}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 1
+      value: 0.718477
       objectReference: {fileID: 0}
     - target: {fileID: 114679475438739226, guid: 8e505584c99e8424499357a4435f1535,
         type: 2}
@@ -4306,12 +4306,12 @@ Prefab:
     - target: {fileID: 20443348011901540, guid: 8e505584c99e8424499357a4435f1535,
         type: 2}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.288043
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 20443348011901540, guid: 8e505584c99e8424499357a4435f1535,
         type: 2}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.42391402
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114679475438739226, guid: 8e505584c99e8424499357a4435f1535,
         type: 2}
@@ -4900,11 +4900,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114087498432306762, guid: 73c784db71064ba4c80ebed6a5078714,
-        type: 2}
-      propertyPath: sceneWaterLines.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4916339680857396, guid: 73c784db71064ba4c80ebed6a5078714, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4936,62 +4931,6 @@ Prefab:
     - target: {fileID: 4916339680857396, guid: 73c784db71064ba4c80ebed6a5078714, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 82492794138829332, guid: 73c784db71064ba4c80ebed6a5078714,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 82346649291929242, guid: 73c784db71064ba4c80ebed6a5078714,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114968994764183754, guid: 73c784db71064ba4c80ebed6a5078714,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114968994764183754, guid: 73c784db71064ba4c80ebed6a5078714,
-        type: 2}
-      propertyPath: mute
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087498432306762, guid: 73c784db71064ba4c80ebed6a5078714,
-        type: 2}
-      propertyPath: score
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087498432306762, guid: 73c784db71064ba4c80ebed6a5078714,
-        type: 2}
-      propertyPath: highScore
-      value: 1234567
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087498432306762, guid: 73c784db71064ba4c80ebed6a5078714,
-        type: 2}
-      propertyPath: sceneWaterLines.Array.data[0]
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087498432306762, guid: 73c784db71064ba4c80ebed6a5078714,
-        type: 2}
-      propertyPath: sceneWaterLines.Array.data[1]
-      value: -76
-      objectReference: {fileID: 0}
-    - target: {fileID: 114087498432306762, guid: 73c784db71064ba4c80ebed6a5078714,
-        type: 2}
-      propertyPath: respawnPoint
-      value: 
-      objectReference: {fileID: 2026996372}
-    - target: {fileID: 114087498432306762, guid: 73c784db71064ba4c80ebed6a5078714,
-        type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1214902856580954, guid: e78e5088ab21900489dc2668436b1624,
-        type: 2}
-    - target: {fileID: 114087498432306762, guid: 73c784db71064ba4c80ebed6a5078714,
-        type: 2}
-      propertyPath: stage
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73c784db71064ba4c80ebed6a5078714, type: 2}
