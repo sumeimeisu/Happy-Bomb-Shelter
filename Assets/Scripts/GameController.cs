@@ -58,7 +58,9 @@ public class GameController : MonoBehaviour
 	{
 		yield return new WaitForSeconds(3f);
 		Image winText = GameObject.FindGameObjectWithTag("Finish").GetComponent<Image>();
-		winText.enabled = true;	
+		winText.enabled = true;
+		yield return new WaitForSeconds(5f);
+		SceneManager.LoadScene(0);
 	}
 
 	IEnumerator ThrowPlayer()

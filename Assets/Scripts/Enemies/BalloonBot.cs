@@ -161,7 +161,7 @@ public class BalloonBot : MovingEntity
 	{
 		while (true)
 		{
-			yield return new WaitForSeconds(FireRate);
+			yield return new WaitForSeconds(FireRate + Random.Range(-1.5f, 1.5f));
 			DroneAnimator.SetTrigger("Shoot");
 			Shoot();
 		}

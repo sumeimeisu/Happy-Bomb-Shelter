@@ -22,5 +22,6 @@ public class BossBot : MonoBehaviour
 			Instantiate(explosion, transform.position + new Vector3(Random.Range(-85f, 85f), Random.Range(-59.5f, 59.5f)), Quaternion.identity);
 			yield return new WaitForSeconds(0.3f);
 		}
+		Destroy(gameObject);
 	}
 }
