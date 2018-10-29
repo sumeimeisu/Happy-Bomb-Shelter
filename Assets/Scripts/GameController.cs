@@ -38,6 +38,11 @@ public class GameController : MonoBehaviour
 		DontDestroyOnLoad(gameObject);
 	}
 
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
+	}
+
 	public void NextStage()
 	{
 		stage++;
