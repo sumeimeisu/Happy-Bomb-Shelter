@@ -1994,7 +1994,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &383969836
 Prefab:
@@ -2212,7 +2212,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &434963524 stripped
 Transform:
@@ -3989,7 +3989,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1306102807
   m_SortingLayer: -1
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 27ed9f7f407f346afa9a2e549927a007, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -4768,6 +4768,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114968994764183754, guid: 73c784db71064ba4c80ebed6a5078714,
+        type: 2}
+      propertyPath: mute
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 73c784db71064ba4c80ebed6a5078714, type: 2}
   m_IsPrefabAsset: 0
@@ -5130,11 +5135,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4796022049543122, guid: 872f12ec2725c014f8f78fae9d5b7e15, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 368.50134
+      value: 449.5
       objectReference: {fileID: 0}
     - target: {fileID: 4796022049543122, guid: 872f12ec2725c014f8f78fae9d5b7e15, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 79.73127
+      value: 71.7
       objectReference: {fileID: 0}
     - target: {fileID: 4796022049543122, guid: 872f12ec2725c014f8f78fae9d5b7e15, type: 2}
       propertyPath: m_LocalPosition.z
@@ -5158,7 +5163,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4796022049543122, guid: 872f12ec2725c014f8f78fae9d5b7e15, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 872f12ec2725c014f8f78fae9d5b7e15, type: 2}
@@ -8633,7 +8638,7 @@ Transform:
   - {fileID: 2112532451}
   - {fileID: 1329196198}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1883852088
 MonoBehaviour:
