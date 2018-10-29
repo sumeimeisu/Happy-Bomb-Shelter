@@ -82,7 +82,7 @@ public class PlayerBehaviour : MovingEntity
 
 	[Header("AudioClips")]
 	public AudioClip death;
-	public AudioClip flap;
+	//public AudioClip flap;
 	public AudioClip hurt;
 	public AudioClip shock;
 	public AudioClip splash;
@@ -193,8 +193,6 @@ public class PlayerBehaviour : MovingEntity
 			case playerState.Flying:
 				if (Input.GetButtonDown(inputFlap))
 				{
-					audioS.clip = flap;
-					audioS.Play();
 					lastFlap = Time.time;
 					rb.velocity += new Vector2(velocityIncrement.x * Input.GetAxis(inputHorizontal),
 												(CheckWater(waterEffect.animUnderwater)) ? -velocityIncrement.y : velocityIncrement.y);
