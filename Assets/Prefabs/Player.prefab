@@ -477,21 +477,20 @@ MonoBehaviour:
   staticParticles2: {fileID: 198332566360388380}
   dash: {fileID: 0}
   waterEffect: {fileID: 114735188297187918}
-  livesImages:
-  - {fileID: 1552513674404590}
-  - {fileID: 1663618495517770}
-  - {fileID: 1726288899969394}
   inputHorizontal: Horizontal
   inputVertical: Vertical
   inputFlap: Flap
   inputDive: Dive
   inputDash: Dash
   death: {fileID: 8300000, guid: d3acb4b981f2545dcba4a84f5595917f, type: 3}
-  flap: {fileID: 8300000, guid: da2b0264a509d444fa62959ab8b9268b, type: 3}
   hurt: {fileID: 8300000, guid: 24ae1f63c9c8542f19eb80ac8556731f, type: 3}
   shock: {fileID: 8300000, guid: 8d4346e8b269e488cb001ec4cc93bc45, type: 3}
   splash: {fileID: 8300000, guid: 25c41ab90fc7140ed956ba2a7b3bbd18, type: 3}
   audioS: {fileID: 0}
+  livesImages:
+  - {fileID: 1552513674404590}
+  - {fileID: 1663618495517770}
+  - {fileID: 1726288899969394}
   state: 0
 --- !u!114 &114735188297187918
 MonoBehaviour:

@@ -27,8 +27,6 @@ public class GameController : MonoBehaviour
 	[HideInInspector]
 	public Vector2 camOffset;
 
-	public GameObject[] livesImages;
-
 	void Awake()
 	{
 		if (instance == null)
@@ -65,7 +63,7 @@ public class GameController : MonoBehaviour
 
 	IEnumerator ThrowPlayer()
 	{
-		Debug.Log("throw");
+		//Debug.Log("throw");
 		Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
 
 		player.transform.position = new Vector3(253, 65);
@@ -73,7 +71,7 @@ public class GameController : MonoBehaviour
 
 		yield return new WaitForSeconds(2f);
 
-		Debug.Log("resim");
+		//Debug.Log("resim");
 
 		playerRb.simulated = true;
 		playerRb.AddForce(new Vector2(200, 200), ForceMode2D.Impulse);
@@ -92,10 +90,10 @@ public class GameController : MonoBehaviour
 
 	public IEnumerator RespawnPlayer()
 	{
-		StartCoroutine(DisplayLives());
 		lives--;
 		if (lives == 0) GameOver();
 		yield return new WaitForSeconds(3f);
+		if (player) Destroy(player);
 		player = Instantiate(playerPrefab, respawnPoint.position, Quaternion.identity);
 
 		// Change this to some parent camera class
@@ -112,23 +110,6 @@ public class GameController : MonoBehaviour
 		stage = 1;
 		lives = 3;
 		SceneManager.LoadScene(0);
-	}
-
-	IEnumerator DisplayLives()
-	{
-		int currLives = lives;
-
-		for (int i = 0; i < currLives; i++)
-		{
-			livesImages[i].SetActive(true);
-		}
-
-		yield return new WaitForSeconds(3f);
-
-		for (int i = 0; i < currLives; i++)
-		{
-			livesImages[i].SetActive(false);
-		}
 	}
 
 	private void OnEnable()
