@@ -27,10 +27,6 @@ public class GameController : MonoBehaviour
 	[HideInInspector]
 	public Vector2 camOffset;
 
-	AsyncOperation asyncLoadLevel;
-
-	public object playerRb { get; private set; }
-
 	void Awake()
 	{
 		if (instance == null)
@@ -96,7 +92,7 @@ public class GameController : MonoBehaviour
 		if (lives == 0) GameOver();
 		yield return new WaitForSeconds(3f);
 		player = Instantiate(playerPrefab, respawnPoint.position, Quaternion.identity);
-		
+
 		// Change this to some parent camera class
 		Camera.main.GetComponent<FollowPlayer>().ReassignPlayer();
 	}

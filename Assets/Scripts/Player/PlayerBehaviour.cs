@@ -71,6 +71,8 @@ public class PlayerBehaviour : MovingEntity
 
 	[SerializeField] WaterEffect waterEffect;
 
+	public GameObject[] livesImages;
+
 	[NonSerialized] public bool dying;
 	[NonSerialized] public bool diving;
 
@@ -103,7 +105,8 @@ public class PlayerBehaviour : MovingEntity
 		defaultLDrag = rb.drag;
 		sprite = GetComponent<SpriteRenderer>();
 		audioS = GetComponent<AudioSource>();
-		//dash.Initialize(this);
+
+		StartCoroutine(DisplayLives());
 	}
 
 	bool IsGrounded()
@@ -348,6 +351,23 @@ public class PlayerBehaviour : MovingEntity
 		{
 			sprite.enabled = !sprite.enabled;
 			yield return new WaitForSeconds(0.01f);
+		}
+	}
+
+	IEnumerator DisplayLives()
+	{
+		int currLives = GameController.instance.lives;
+
+		for (int i = 0; i < currLives - 1; i++)
+		{
+			livesImages[i].SetActive(true);
+		}
+
+		yield return new WaitForSeconds(3f);
+
+		for (int i = 0; i < currLives - 1; i++)
+		{
+			livesImages[i].SetActive(false);
 		}
 	}
 
