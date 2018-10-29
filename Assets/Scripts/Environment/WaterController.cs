@@ -22,14 +22,6 @@ public class WaterController : MonoBehaviour
 	{
 		if (electrified != lastElectrified) DeStatic();
 		lastElectrified = electrified;
-
-		/*
-		if (electrified) anim.SetLayerWeight(1, 1);
-		else
-		{
-			anim.SetLayerWeight(1, 0);
-		}
-		*/
 	}
 
 	void DeStatic()

@@ -1164,6 +1164,75 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &236828633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 236828634}
+  - component: {fileID: 236828636}
+  - component: {fileID: 236828635}
+  m_Layer: 5
+  m_Name: Win
+  m_TagString: Finish
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &236828634
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 236828633}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1218376259}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 25.25}
+  m_SizeDelta: {x: 56, y: 6}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &236828635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 236828633}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 16135129e79e54a21a859fe2e84be9cf, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &236828636
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 236828633}
+  m_CullTransparentMesh: 0
 --- !u!1 &239263662
 GameObject:
   m_ObjectHideFlags: 0
@@ -5446,6 +5515,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4361517284511562, guid: 194b7aaa00f6c456c832e710a5eb295a,
     type: 2}
   m_PrefabInternal: {fileID: 517900456}
+--- !u!224 &1218376259 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 224123516362992798, guid: c94ca808919fae44aaeb6be76baaba9a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1986457495}
 --- !u!198 &1240006309 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 198422726123502168, guid: dd70ae0e510c946bba021d4f00cd8623,
@@ -8853,8 +8927,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftArm: {fileID: 812762633}
   rightArm: {fileID: 1469056127}
-  explosion: {fileID: 0}
-  alive: 1
+  explosion: {fileID: 1552372733183016, guid: 7aca5f3d814635d43ab7dc9c7528f850, type: 2}
+  alive: 0
 --- !u!4 &1883901026 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4361517284511562, guid: 194b7aaa00f6c456c832e710a5eb295a,
@@ -8912,6 +8986,11 @@ Prefab:
       propertyPath: DroneProjectilesPool
       value: 
       objectReference: {fileID: 200014890}
+    - target: {fileID: 61556347922446670, guid: 872f12ec2725c014f8f78fae9d5b7e15,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 872f12ec2725c014f8f78fae9d5b7e15, type: 2}
   m_IsPrefabAsset: 0
@@ -9486,6 +9565,11 @@ Prefab:
     - target: {fileID: 1720919886432890, guid: c94ca808919fae44aaeb6be76baaba9a, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224131050991004214, guid: c94ca808919fae44aaeb6be76baaba9a,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c94ca808919fae44aaeb6be76baaba9a, type: 2}

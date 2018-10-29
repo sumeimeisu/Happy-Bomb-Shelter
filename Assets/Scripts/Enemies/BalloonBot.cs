@@ -101,7 +101,7 @@ public class BalloonBot : MovingEntity
 	void Death()
 	{
 		DroneAnimator.SetTrigger("Death");
-		collider2.enabled = collider1.enabled = false;
+		collider2.enabled = collider1.enabled = GetComponent<BoxCollider2D>().enabled = false;
 		rb.velocity = Vector2.zero;
 		StopAllCoroutines();
 	}
@@ -175,5 +175,10 @@ public class BalloonBot : MovingEntity
 		Projectile.transform.position = DroneGunOutputTransforms.position;
 		gs.velocity = facingLeft ? -DroneGunOutputTransforms.right :  DroneGunOutputTransforms.right;
 		Projectile.SetActive(true);
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.collider.CompareTag("Water")) Death();
 	}
 }

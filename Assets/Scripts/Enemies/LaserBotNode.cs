@@ -21,10 +21,15 @@ public class LaserBotNode : MovingEntity
 	{
 		if (transform.position.y < GameController.instance.waterline)
 		{
-			Instantiate(parent.explosion, transform.position, Quaternion.identity);
-			parent.StopAllCoroutines();
-			Destroy(gameObject);
+			Death();
 		}
+	}
+
+	public void Death()
+	{
+		Instantiate(parent.explosion, transform.position, Quaternion.identity);
+		parent.StopAllCoroutines();
+		Destroy(gameObject);
 	}
 
 	public void MoveToTarget(Vector3 target)
@@ -48,5 +53,8 @@ public class LaserBotNode : MovingEntity
 		trigger.enabled = !trigger.enabled;
 	}
 
-	
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.collider.CompareTag("Water")) Death();
+	}
 }

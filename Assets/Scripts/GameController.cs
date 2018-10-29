@@ -27,6 +27,8 @@ public class GameController : MonoBehaviour
 	[HideInInspector]
 	public Vector2 camOffset;
 
+	public GameObject[] livesImages;
+
 	void Awake()
 	{
 		if (instance == null)
@@ -88,6 +90,7 @@ public class GameController : MonoBehaviour
 
 	public IEnumerator RespawnPlayer()
 	{
+		StartCoroutine(DisplayLives());
 		lives--;
 		if (lives == 0) GameOver();
 		yield return new WaitForSeconds(3f);
@@ -107,6 +110,23 @@ public class GameController : MonoBehaviour
 		stage = 1;
 		lives = 3;
 		SceneManager.LoadScene(0);
+	}
+
+	IEnumerator DisplayLives()
+	{
+		int currLives = lives;
+
+		for (int i = 0; i < currLives; i++)
+		{
+			livesImages[i].SetActive(true);
+		}
+
+		yield return new WaitForSeconds(3f);
+
+		for (int i = 0; i < currLives; i++)
+		{
+			livesImages[i].SetActive(false);
+		}
 	}
 
 	private void OnEnable()
