@@ -6,6 +6,8 @@ public class TeslaCoil : MonoBehaviour
 {
 	public TeslaCoilButton[] buttons;
 	public ParticleSystem electrifyWater;
+	public ParticleSystem waterStatic;
+	public ParticleSystem waterStatic2;
 	bool active = true;
 
 	Animator anim;
@@ -39,6 +41,8 @@ public class TeslaCoil : MonoBehaviour
 			}
 
 			electrifyWater.Stop();
+			waterStatic.Stop();
+			waterStatic2.Stop();
 		}
 	}
 }

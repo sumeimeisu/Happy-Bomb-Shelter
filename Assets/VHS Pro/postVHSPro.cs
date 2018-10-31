@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Video;
 
 [ExecuteInEditMode]
 [RequireComponent (typeof(Camera))]
@@ -199,20 +200,31 @@ public class postVHSPro : MonoBehaviour {
 		//texture for caching curves				
 		if(crtMode==3) buildCurves();
 
-		//Movie Texture autoplay but it doesnt exist on many platforms
+		//Movie Texture autoplay but it doesnt exist on many platforms !! Deprecated!!
+		/*
 		#if !(UNITY_PS4 || UNITY_IOS || UNITY_XBOXONE || UNITY_ANDROID)
 	      if(bypassTex!=null && bypassTex is MovieTexture) {
 	          ((MovieTexture)bypassTex).loop = true;
 	          ((MovieTexture)bypassTex).Play();
 	      }	
-      #endif			
+      #endif
+	 */
+
+		#if !(UNITY_PS4 || UNITY_IOS || UNITY_XBOXONE || UNITY_ANDROID)
+				if (bypassTex != null) {
+				VideoPlayer t = new VideoPlayer();
+				t.targetTexture = (RenderTexture)bypassTex;
+				t.isLooping = true;
+				t.Play();
+			}
+		#endif
 
 		// if(movieTex!=null){
-	 //      movieTex.loop = true;
-	 //      movieTex.Play();			
+		//      movieTex.loop = true;
+		//      movieTex.Play();			
 		// }
 
-		
+
 
 	}
 
