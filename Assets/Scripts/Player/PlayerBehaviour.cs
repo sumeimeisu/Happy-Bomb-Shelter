@@ -417,6 +417,11 @@ public class PlayerBehaviour : MovingEntity
 		}
 		else if (collision.CompareTag("ElectricField"))
 		{
+			audioS.clip = shock;
+			audioS.Play();
+
+			staticParticles1.Play();
+			staticParticles2.Play();
 			TakeDamage(1);
 		}		
 		else if (collision.CompareTag("BossEntrance"))

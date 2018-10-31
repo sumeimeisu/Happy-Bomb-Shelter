@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class TeslaCoil : MonoBehaviour 
 {
+	public bool guarded = false;
 	public TeslaCoilButton[] buttons;
 	public ParticleSystem electrifyWater;
 	public ParticleSystem waterStatic;
 	public ParticleSystem waterStatic2;
+	public float defenseCycle;
 	bool active = true;
 
 	Animator anim;
@@ -21,6 +23,14 @@ public class TeslaCoil : MonoBehaviour
 		foreach (GameObject waterPieces in water)
 		{
 			waterPieces.GetComponent<WaterController>().electrified = true;
+		}
+
+		if (guarded)
+		{
+			foreach (TeslaCoilButton tb in buttons)
+			{
+				tb.StartCoroutine(tb.CycleDefense());
+			}
 		}
 	}
 
@@ -40,6 +50,7 @@ public class TeslaCoil : MonoBehaviour
 				waterPieces.GetComponent<WaterController>().electrified = false;
 			}
 
+			GetComponent<AudioSource>().Play();
 			electrifyWater.Stop();
 			waterStatic.Stop();
 			waterStatic2.Stop();

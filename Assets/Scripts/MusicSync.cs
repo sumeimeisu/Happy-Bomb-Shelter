@@ -28,6 +28,7 @@ public class MusicSync : MonoBehaviour
 			aboveWaterSong.volume = 0;
 			return;
 		}
+
 		if (!playerTransform) return;
 
 		lastUnderwater = underwater;
@@ -38,6 +39,11 @@ public class MusicSync : MonoBehaviour
 			StopAllCoroutines();
 			StartCoroutine(SwitchTracks(underwater));
 		}
+	}
+
+	public void ReassignPlayer(Transform player)
+	{
+		playerTransform = player;
 	}
 
 	IEnumerator SwitchTracks(bool under)

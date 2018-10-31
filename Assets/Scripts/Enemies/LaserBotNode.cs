@@ -12,9 +12,14 @@ public class LaserBotNode : MovingEntity
 
 	[SerializeField] private CircleCollider2D trigger;
 
+	Animator anim;
+	SpriteRenderer sr;
+
 	private void Start()
 	{
-		rb = GetComponent<Rigidbody2D>();	
+		rb = GetComponent<Rigidbody2D>();
+		anim = GetComponent<Animator>();
+		sr = GetComponent<SpriteRenderer>();
 	}
 
 	private void Update()
@@ -48,9 +53,29 @@ public class LaserBotNode : MovingEntity
 		rb.AddForce(-collision.relativeVelocity * parent.knockback, ForceMode2D.Impulse);
 	}
 
-	public void CycleAttack()
+	public void CycleAttack(bool setting)
 	{
-		trigger.enabled = !trigger.enabled;
+		if (setting) StartCoroutine(TurnOn());
+		else TurnOff();
+	}
+
+	public IEnumerator TurnOn()
+	{
+		anim.speed = 2;
+		for (int i = 0; i < 8; i++)
+		{
+			sr.enabled = !sr.enabled;
+			yield return new WaitForSeconds(0.125f);
+		}
+		anim.speed = 1;
+		circleStatic.Play();
+		trigger.enabled = true;
+	}
+
+	public void TurnOff()
+	{
+		circleStatic.Stop();
+		trigger.enabled = false;
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)

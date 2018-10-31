@@ -9,9 +9,7 @@ public class GameController : MonoBehaviour
 	public static GameController instance = null;
 	public Transform respawnPoint;
 
-	public float[] sceneWaterLines;
-	public float[] sceneAnimLines;
-
+	[HideInInspector]
 	public float waterline;
 	[HideInInspector]
 	public float animline;
@@ -46,6 +44,8 @@ public class GameController : MonoBehaviour
 			stage = 1;
 			SceneManager.LoadScene(0);
 		}
+
+		//Debug.Log("GC: " + waterline);
 	}
 
 	public void NextStage()
@@ -57,9 +57,6 @@ public class GameController : MonoBehaviour
 	public void LoadScene(int scene)
 	{
 		SceneManager.LoadScene(scene + 1);
-
-		waterline = sceneWaterLines[(scene == 0 ? 0 : 1)];
-		animline = sceneAnimLines[(scene == 0 ? 0 : 1)];
 	}
 
 	IEnumerator Win()
@@ -136,7 +133,13 @@ public class GameController : MonoBehaviour
 		if (scene.buildIndex != 0)
 		{
 			respawnPoint = GameObject.FindGameObjectWithTag("SpawnPoint").transform;
+			waterline = respawnPoint.GetComponent<LevelVariables>().levelWaterLine;
+			animline = waterline - 8;
+
 			player = Instantiate(playerPrefab, respawnPoint.position, Quaternion.identity);
+
+			GetComponent<MusicSync>().ReassignPlayer(player.transform);
+
 			if (scene.buildIndex > 2) StartCoroutine(ThrowPlayer());
 			if (scene.buildIndex == 5) StartCoroutine(Win());
 		}

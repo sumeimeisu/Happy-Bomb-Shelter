@@ -12,9 +12,9 @@ public class Parallax : MonoBehaviour
 
 	void Start () 
 	{
-		camTransform = Camera.main.transform;	
+		camTransform = Camera.main.transform;
 	}
-	
+
 	void LateUpdate () 
 	{
 		float deltaX = camTransform.position.x - lastCamX;

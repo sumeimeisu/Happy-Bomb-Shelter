@@ -11,6 +11,7 @@ public class LaserBot : MonoBehaviour
 	public float spinRate;
 	public float knockback;
 	public float attackCycle;
+	public float maxDistance;
 	public float hoverAboveWaterLevel;
 
 	[Header("References")] [SerializeField]
@@ -101,21 +102,33 @@ public class LaserBot : MonoBehaviour
 	public IEnumerator DualAttackPattern()
 	{
 		while (true)
-		{
-			yield return new WaitForSeconds(attackCycle);
-			node1.circleStatic.Play();
-			node1.CycleAttack();
-			node2.circleStatic.Play();
-			node2.CycleAttack();
+		{ 
+			yield return new WaitForSeconds(attackCycle + 1f);
+			//node1.circleStatic.Play();
+			node1.CycleAttack(true);
+			//node2.circleStatic.Play();
+			node2.CycleAttack(true);
 
-			lineStaticTrigger.enabled = true;
-			lineStatic.Play();
+			yield return new WaitForSeconds(1f);
+
+			float t = 0;
+			bool hasConnected = false;
+			while (t < attackCycle)
+			{
+				if (Vector3.Distance(node1.transform.position, node2.transform.position) < maxDistance && !hasConnected)
+				{
+					lineStaticTrigger.enabled = true;
+					lineStatic.Play();
+					hasConnected = true;
+				}
+				t += Time.deltaTime;
+				yield return null;
+			}
 			
-			yield return new WaitForSeconds(attackCycle);
-			node1.circleStatic.Stop();
-			node1.CycleAttack();
-			node2.circleStatic.Stop();
-			node2.CycleAttack();
+			//node1.circleStatic.Stop();
+			node1.CycleAttack(false);
+			//node2.circleStatic.Stop();
+			node2.CycleAttack(false);
 
 			lineStaticTrigger.enabled = false;
 			lineStatic.Stop();
@@ -127,11 +140,11 @@ public class LaserBot : MonoBehaviour
 		while(true)
 		{
 			yield return new WaitForSeconds(attackCycle);
-			node.circleStatic.Play();
-			node.CycleAttack();
+			//node.circleStatic.Play();
+			node.CycleAttack(true);
 			yield return new WaitForSeconds(attackCycle);
-			node.circleStatic.Stop();
-			node.CycleAttack();
+			//node.circleStatic.Stop();
+			node.CycleAttack(false);
 		}
 	}
 

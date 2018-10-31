@@ -20,7 +20,7 @@ public class BubblesSmall : MonoBehaviour
 
 		for (int i = 0; i < numParticles; i++)
 		{
-			if (particles[i].position.y > 0) particles[i].remainingLifetime = 0;
+			if (particles[i].position.y > GameController.instance.animline) particles[i].remainingLifetime = 0;
 		}
 
 		ps.SetParticles(particles, numParticles);

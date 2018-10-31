@@ -57,7 +57,7 @@ public class BalloonBot : MovingEntity
 		DroneAnimator = GetComponent<Animator>();
 		audioS = GetComponent<AudioSource>();
 
-		StartCoroutine(ShootLoop());
+		//StartCoroutine(ShootLoop());
 	}
 
 	void Update()
@@ -71,12 +71,11 @@ public class BalloonBot : MovingEntity
 		}
 
 		if (health > 0) MoveAbovePlayer();
-		else
-		{
-			transform.position -= Vector3.up * deathFallingRate;
-		}
+		//else transform.position -= Vector3.up * deathFallingRate;
 
 		facingLeft = PlayerTransform.position.x < transform.position.x;
+
+		//Debug.Log("BBot: " + GameController.instance.waterline);
 
 		if (transform.position.y < GameController.instance.waterline)
 		{
@@ -96,14 +95,6 @@ public class BalloonBot : MovingEntity
 			StartCoroutine(WaitForColliderSwitch());
 		}
 		else Death();
-	}
-
-	void Death()
-	{
-		DroneAnimator.SetTrigger("Death");
-		collider2.enabled = collider1.enabled = GetComponent<BoxCollider2D>().enabled = false;
-		rb.velocity = Vector2.zero;
-		StopAllCoroutines();
 	}
 
 	// may have to change to rigidbody movement...
@@ -143,13 +134,17 @@ public class BalloonBot : MovingEntity
 		transform.position += Velocity * Time.deltaTime * Speed;
 	}
 
-	override public void divedOnto(Collision2D collision)
+	void Death()
 	{
-		rb.AddForce(-collision.relativeVelocity * knockback, ForceMode2D.Impulse);
-		TakeDamage();
-		//Debug.Log("Bot: " + collision.relativeVelocity.magnitude);
+		health = 0;
+		StopAllCoroutines();
+		DroneAnimator.SetTrigger("Death");
+		collider2.enabled = collider1.enabled = GetComponent<BoxCollider2D>().enabled = false;
+		rb.velocity = Vector2.zero;
+		StartCoroutine(DeathFalling());
 	}
 
+	// extra precaution to avoid two hits on subsequent frames
 	IEnumerator WaitForColliderSwitch()
 	{
 		yield return new WaitForSeconds(0.1f);
@@ -177,8 +172,26 @@ public class BalloonBot : MovingEntity
 		Projectile.SetActive(true);
 	}
 
+	IEnumerator DeathFalling()
+	{
+		// follow animation curve ? 
+		float t = 0;
+		while (true)
+		{
+			transform.position += Vector3.down * deathFallingRate;
+			t += Time.deltaTime;
+			yield return null;
+		}
+	}
+
+	override public void divedOnto(Collision2D collision)
+	{
+		rb.AddForce(-collision.relativeVelocity * knockback, ForceMode2D.Impulse);
+		TakeDamage();
+	}
+
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.collider.CompareTag("Water")) Death();
+		if (collision.collider.CompareTag("Water"))	Death();
 	}
 }
