@@ -37,6 +37,8 @@ sysinfo.txt
 # OS generated
 ###
 .DS_Store
+*.![image](http://github.com/sumeimeisu/Happy-Bomb-Shelter/raw/master/images/IMG_1192.PNG)
+*.![image](http://github.com/sumeimeisu/Happy-Bomb-Shelter/raw/master/images/IMG_1191.PNG)
 
 
 
